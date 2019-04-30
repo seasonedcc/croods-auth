@@ -1,13 +1,12 @@
 import React from 'react'
 import { navigate, Link } from '@reach/router'
 import { useFormState } from 'react-use-form-state'
-import { useSignIn, useForgotPassword } from 'croods-light-auth'
+import { useSignIn } from 'croods-light-auth'
+
+import basePath from './basePath'
 
 export default () => {
-  const [{ signInIn, signInError }, signIn] = useSignIn()
-  const [{ sendingForgot }, sendForgot] = useForgotPassword({
-    stateId: 'forgot',
-  })
+  const [{ signingIn, signInError }, signIn] = useSignIn()
   const [formState, { email, password }] = useFormState()
 
   return (
@@ -15,7 +14,7 @@ export default () => {
       onSubmit={async event => {
         event.preventDefault()
         const signed = await signIn(formState.values)
-        signed && navigate('/')
+        signed && navigate(`${basePath}/`)
       }}
     >
       <h2>Sign In</h2>
@@ -30,7 +29,7 @@ export default () => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="password">Confirm password</label>
+        <label htmlFor="password">Password</label>
         <input
           {...password('password')}
           className={`form-control ${signInError && 'is-invalid'}`}
@@ -40,20 +39,13 @@ export default () => {
         {signInError && <div className="invalid-feedback">{signInError}</div>}
       </div>
       <p>
-        <Link to="/sign-up">{`Don't have an account?`}</Link>
+        <Link to={`${basePath}/sign-up`}>{`Don't have an account?`}</Link>
       </p>
       <p>
-        {sendingForgot ? (
-          'Sending...'
-        ) : (
-          <a
-            href="#"
-            onClick={() => sendForgot(formState.values.email, '/')}
-          >{`Forgot your password?`}</a>
-        )}
+        <Link to={`${basePath}/forgot-password`}>Forgot your password?</Link>
       </p>
       <button type="submit" className="btn btn-primary">
-        {signInIn ? 'Signing in...' : 'Sign in'}
+        {signingIn ? 'Signing in...' : 'Sign in'}
       </button>
     </form>
   )

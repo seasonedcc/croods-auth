@@ -2,22 +2,23 @@ import React from 'react'
 import { navigate } from '@reach/router'
 import { useSignOut, useDeleteAccount, useCurrentUser } from 'croods-light-auth'
 
+import basePath from './basePath'
+
 export default () => {
   const [{ currentUser }] = useCurrentUser()
-  const [{ signInOut }, signOut] = useSignOut()
-  const [{ deletingAccount }, deleteAccount] = useDeleteAccount({
-    stateId: 'delete',
-  })
+  const [{ signingOut }, signOut] = useSignOut()
+  const [{ deletingAccount }, deleteAccount] = useDeleteAccount()
 
   return currentUser ? (
     <div>
       <p>Logged in as {currentUser.name}</p>
       <button className="btn btn-primary" onClick={signOut}>
-        {signInOut ? 'Signing Out...' : 'Sign Out'}
+        {signingOut ? 'Signing Out...' : 'Sign Out'}
       </button>{' '}
       <button
         className="btn btn-danger"
         onClick={() => {
+          // eslint-disable-next-line
           const shouldDelete = window.confirm('Are you sure?')
           shouldDelete && deleteAccount()
         }}
@@ -28,7 +29,10 @@ export default () => {
   ) : (
     <div>
       <p>You are not logged in...</p>
-      <button className="btn btn-primary" onClick={() => navigate('sign-in')}>
+      <button
+        className="btn btn-primary"
+        onClick={() => navigate(`${basePath}/sign-in`)}
+      >
         Go to Sign In Page
       </button>
     </div>

@@ -3,8 +3,10 @@ import { navigate, Link } from '@reach/router'
 import { useFormState } from 'react-use-form-state'
 import { useSignUp } from 'croods-light-auth'
 
+import basePath from './basePath'
+
 export default () => {
-  const [{ signInUp, signUpError }, signUp] = useSignUp({ stateId: 'signUp' })
+  const [{ signingUp, signUpError }, signUp] = useSignUp({ stateId: 'signUp' })
   const [formState, { text, email, password }] = useFormState()
 
   return (
@@ -12,7 +14,7 @@ export default () => {
       onSubmit={async event => {
         event.preventDefault()
         const signed = await signUp(formState.values)
-        signed && navigate('/')
+        signed && navigate(`${basePath}/`)
       }}
     >
       <h2>Sign Up</h2>
@@ -59,10 +61,10 @@ export default () => {
         {signUpError && <div className="invalid-feedback">{signUpError}</div>}
       </div>
       <p>
-        <Link to="/sign-in">Already have an account?</Link>
+        <Link to={`${basePath}/sign-in`}>Already have an account?</Link>
       </p>
       <button type="submit" className="btn btn-primary">
-        {signInUp ? 'Signing up...' : 'Sign up'}
+        {signingUp ? 'Signing up...' : 'Sign up'}
       </button>
     </form>
   )
