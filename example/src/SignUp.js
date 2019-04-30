@@ -1,65 +1,34 @@
 import React from 'react'
-import { navigate, Link } from '@reach/router'
-import { useFormState } from 'react-use-form-state'
 import { useSignUp } from 'croods-light-auth'
+import { Link, navigate } from '@reach/router'
 
 import basePath from './basePath'
+import Input from './Input'
 
 export default () => {
-  const [{ signingUp, signUpError }, signUp] = useSignUp({ stateId: 'signUp' })
-  const [formState, { text, email, password }] = useFormState()
+  const [{ signingUp, signUpError, error, ...options }] = useSignUp({
+    stateId: 'signUp',
+    afterSuccess: () => navigate(`${basePath}/`),
+  })
+  const {
+    emailProps,
+    passwordProps,
+    passwordConfirmationProps,
+    fields,
+    formProps,
+  } = options
 
   return (
-    <form
-      onSubmit={async event => {
-        event.preventDefault()
-        const signed = await signUp(formState.values)
-        signed && navigate(`${basePath}/`)
-      }}
-    >
+    <form {...formProps}>
       <h2>Sign Up</h2>
-      <div className="form-group">
-        <label htmlFor="name">Name</label>
-        <input
-          {...text('name')}
-          className="form-control"
-          id="name"
-          aria-describedby="emailHelp"
-          placeholder="Enter email"
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="email">Email address</label>
-        <input
-          {...email('email')}
-          className="form-control"
-          id="email"
-          aria-describedby="emailHelp"
-          placeholder="Enter email"
-        />
+      <Input {...fields.text('name')} label="Full name" />
+      <Input {...emailProps} label="Enter email">
         <small id="emailHelp" className="form-text text-muted">
           {`We'll never share your email with anyone else.`}
         </small>
-      </div>
-      <div className="form-group">
-        <label htmlFor="password">Password</label>
-        <input
-          {...password('password')}
-          className="form-control"
-          id="password"
-          placeholder="Password"
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="passwordConfirmation">Password</label>
-        <input
-          {...password('passwordConfirmation')}
-          className={`form-control ${signUpError && 'is-invalid'}`}
-          id="passwordConfirmation"
-          placeholder="Confirm Password"
-        />
-        {signUpError && <div className="invalid-feedback">{signUpError}</div>}
-      </div>
+      </Input>
+      <Input {...passwordProps} />
+      <Input {...passwordConfirmationProps} error={error} />
       <p>
         <Link to={`${basePath}/sign-in`}>Already have an account?</Link>
       </p>

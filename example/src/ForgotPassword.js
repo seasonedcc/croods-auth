@@ -1,36 +1,21 @@
 import React from 'react'
 import { navigate, Link } from '@reach/router'
-import { useFormState } from 'react-use-form-state'
 import { useForgotPassword } from 'croods-light-auth'
 
+import Input from './Input'
 import basePath from './basePath'
 
 export default () => {
-  const [{ sendingForgot, sendError }, sendForgot] = useForgotPassword({
+  const [{ sendingForgot, error, formProps, emailProps }] = useForgotPassword({
     stateId: 'forgot',
+    redirectUrl: '/',
+    afterSuccess: () => navigate(`${basePath}/forgot-sent`),
   })
-  const [formState, { email }] = useFormState()
 
   return (
-    <form
-      onSubmit={async event => {
-        event.preventDefault()
-        const sent = await sendForgot(formState.values.email, '/')
-        sent && navigate(`${basePath}/forgot-sent`)
-      }}
-    >
+    <form {...formProps}>
       <h2>Forgot your password?</h2>
-      <div className="form-group">
-        <label htmlFor="email">Email address</label>
-        <input
-          {...email('email')}
-          className={`form-control ${sendError && 'is-invalid'}`}
-          id="email"
-          aria-describedby="emailHelp"
-          placeholder="Enter email"
-        />
-        {sendError && <div className="invalid-feedback">{sendError}</div>}
-      </div>
+      <Input {...emailProps} error={error} />
       <p>
         <Link to={`${basePath}/sign-in`}>{`Go back`}</Link>
       </p>

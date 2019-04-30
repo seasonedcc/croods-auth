@@ -1,43 +1,20 @@
 import React from 'react'
 import { navigate, Link } from '@reach/router'
-import { useFormState } from 'react-use-form-state'
 import { useSignIn } from 'croods-light-auth'
 
+import Input from './Input'
 import basePath from './basePath'
 
 export default () => {
-  const [{ signingIn, signInError }, signIn] = useSignIn()
-  const [formState, { email, password }] = useFormState()
+  const [
+    { signingIn, error, emailProps, passwordProps, formProps },
+  ] = useSignIn({ afterSuccess: () => navigate(`${basePath}/`) })
 
   return (
-    <form
-      onSubmit={async event => {
-        event.preventDefault()
-        const signed = await signIn(formState.values)
-        signed && navigate(`${basePath}/`)
-      }}
-    >
+    <form {...formProps}>
       <h2>Sign In</h2>
-      <div className="form-group">
-        <label htmlFor="email">Email address</label>
-        <input
-          {...email('email')}
-          className="form-control"
-          id="email"
-          aria-describedby="emailHelp"
-          placeholder="Enter email"
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="password">Password</label>
-        <input
-          {...password('password')}
-          className={`form-control ${signInError && 'is-invalid'}`}
-          id="password"
-          placeholder="Password"
-        />
-        {signInError && <div className="invalid-feedback">{signInError}</div>}
-      </div>
+      <Input {...emailProps} label="Email address" />
+      <Input {...passwordProps} error={error} />
       <p>
         <Link to={`${basePath}/sign-up`}>{`Don't have an account?`}</Link>
       </p>
