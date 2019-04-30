@@ -1,9 +1,13 @@
 {
   "presets": [
-    ["env", {
-      "modules": false
-    }],
-    "stage-0",
+    [
+      "env",
+      {
+        "modules": false
+      }
+    ],
+    "stage-2",
     "react"
-  ]
+  ],
+  "ignore": ["node_modules", "dist"]
 }

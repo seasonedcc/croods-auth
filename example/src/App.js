@@ -1,13 +1,18 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { CroodsProvider } from 'croods-light'
+import { Router } from '@reach/router'
 
-import ExampleComponent from 'croods-light-auth'
+import basePath from './basePath'
+import Start from './Start'
+import SignIn from './SignIn'
+import SignUp from './SignUp'
 
-export default class App extends Component {
-  render () {
-    return (
-      <div>
-        <ExampleComponent text='Modern React component module' />
-      </div>
-    )
-  }
-}
+export default () => (
+  <CroodsProvider debugActions baseUrl={process.env.REACT_APP_API_URL}>
+    <Router basepath={basePath}>
+      <Start path="/" />
+      <SignIn path="/sign-in" />
+      <SignUp path="/sign-up" />
+    </Router>
+  </CroodsProvider>
+)
