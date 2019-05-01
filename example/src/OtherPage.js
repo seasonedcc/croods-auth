@@ -1,32 +1,21 @@
 import React from 'react'
-import { navigate, Link } from '@reach/router'
-import { useCurrentUser } from 'croods-light-auth'
+import { Link } from '@reach/router'
 
 import basePath from './basePath'
 
-export default () => {
-  const [{ currentUser }, setCurrentUser] = useCurrentUser(null, () =>
-    navigate(`${basePath}/sign-in`),
-  )
-
-  return (
-    <div>
-      <h2>
-        {currentUser
-          ? `Still logged in as ${currentUser.email}`
-          : 'Not logged in'}
-      </h2>
-      {currentUser && (
-        <button
-          className="btn btn-primary"
-          onClick={() => setCurrentUser({ email: 'foo@bar.com' }, true)}
-        >
-          Change user email to a blocked user
-        </button>
-      )}
-      <p>
-        <Link to={`${basePath}/`}>Back to Homepage</Link>
-      </p>
-    </div>
-  )
-}
+export default ({ currentUser, setCurrentUser }) => (
+  <div style={{ textAlign: 'center' }}>
+    <h2>Still logged in as {currentUser.email}</h2>
+    {currentUser && (
+      <button
+        className="btn btn-primary"
+        onClick={() => setCurrentUser({ email: 'foo@bar.com' }, true)}
+      >
+        Change user email to a blocked user
+      </button>
+    )}
+    <p style={{ marginTop: '1rem' }}>
+      <Link to={`${basePath}/`}>Back to Homepage</Link>
+    </p>
+  </div>
+)

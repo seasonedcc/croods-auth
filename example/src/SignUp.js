@@ -5,10 +5,13 @@ import { Link, navigate } from '@reach/router'
 import basePath from './basePath'
 import Input from './Input'
 
-export default () => {
+export default ({ setAlert }) => {
   const [{ signingUp, error, ...options }] = useSignUp({
     stateId: 'signUp',
-    afterSuccess: () => navigate(`${basePath}/`),
+    afterSuccess: () => {
+      navigate(`${basePath}/`)
+      setAlert({ message: 'Successfully signed up', type: 'success' })
+    },
   })
   const {
     emailProps,

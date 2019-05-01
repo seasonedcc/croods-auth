@@ -9,8 +9,8 @@ export default ({ currentUser }) => {
   const [{ deletingAccount }, deleteAccount] = useDeleteAccount()
 
   return (
-    <div>
-      <p>Logged in as {currentUser.email}</p>
+    <div style={{ textAlign: 'center' }}>
+      <h2>Logged in as {currentUser.email}</h2>
       <button className="btn btn-primary" onClick={signOut}>
         {signingOut ? 'Signing Out...' : 'Sign Out'}
       </button>{' '}
@@ -24,8 +24,8 @@ export default ({ currentUser }) => {
       >
         {deletingAccount ? 'Deleting account...' : 'Delete account'}
       </button>
-      <p>
-        <Link to={`${basePath}/other-page`}>Other page</Link>
+      <p style={{ marginTop: '1rem' }}>
+        <Link to={`${basePath}/other-page`}>Go to other page</Link>
       </p>
     </div>
   )

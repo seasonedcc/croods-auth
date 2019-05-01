@@ -5,10 +5,15 @@ import { useSignIn } from 'croods-light-auth'
 import Input from './Input'
 import basePath from './basePath'
 
-export default () => {
+export default ({ setAlert }) => {
   const [
     { signingIn, error, emailProps, passwordProps, formProps },
-  ] = useSignIn({ afterSuccess: () => navigate(`${basePath}/`) })
+  ] = useSignIn({
+    afterSuccess: () => {
+      navigate(`${basePath}/`)
+      setAlert({ message: 'Successfully signed in', type: 'success' })
+    },
+  })
 
   return (
     <form {...formProps}>
