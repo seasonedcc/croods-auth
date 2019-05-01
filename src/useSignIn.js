@@ -7,12 +7,13 @@ export default (options = {}) => {
   const [formState, fields] = useFormState()
   const [
     { saving: signingIn, saved: signed, saveError: error },
-    { save },
+    { save, setInfo },
   ] = useCroods({ ...getBaseOpts(options), name, path })
 
-  const onSubmit = event => {
+  const onSubmit = async event => {
     event && event.preventDefault && event.preventDefault()
-    save()(formState.values)
+    const saved = await save()(formState.values)
+    saved && setInfo(saved)
   }
 
   return [

@@ -10,7 +10,7 @@ export default (options = {}) => {
       destroying: signingOut,
       destroyError: error,
     },
-    { destroy },
+    { destroy, setInfo },
   ] = useCroods({
     ...getBaseOpts(options),
     name,
@@ -20,6 +20,9 @@ export default (options = {}) => {
 
   return [
     { currentUser, signingOut, signedOut, error },
-    destroy(currentUser && currentUser.id),
+    async () => {
+      await destroy(true)()
+      setInfo(null)
+    },
   ]
 }

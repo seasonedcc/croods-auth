@@ -1,7 +1,7 @@
 {
   "name": "croods-light-auth",
   "version": "0.0.1",
-  "description": "",
+  "description": "Authentication made easy with Croods",
   "author": "SeasonedSoftware",
   "license": "MIT",
   "repository": "SeasonedSoftware/croods-light-auth",
@@ -22,7 +22,7 @@
     "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
-    "croods-light": "^0.0.1",
+    "croods-light": "^0.1.0",
     "lodash": "^4.17.11",
     "prop-types": "^15.5.4",
     "react": "^16.8.6",
