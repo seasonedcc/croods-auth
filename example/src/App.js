@@ -12,15 +12,18 @@ import ForgotPassword from './ForgotPassword'
 import ForgotSent from './ForgotSent'
 import ResetPassword from './ResetPassword'
 
-const AuthRoute = props => (
-  <Auth unauthorized={() => navigate(`${basePath}/sign-in`)} {...props} />
-)
+const redirect = path => () => navigate(`${basePath}${path}`)
 
 export default () => (
   <CroodsProvider debugActions baseUrl={process.env.REACT_APP_API_URL}>
     <Router basepath={basePath}>
-      <AuthRoute Component={Start} path="/" />
-      <AuthRoute Component={OtherPage} path="/other-page" />
+      <Auth Component={Start} path="/" unauthorized={redirect('/sign-in')} />
+      <Auth
+        Component={OtherPage}
+        unauthorized={redirect('/')}
+        unauthorize={currentUser => currentUser.email === 'foo@bar.com'}
+        path="/other-page"
+      />
       <SignIn path="/sign-in" />
       <SignUp path="/sign-up" />
       <ForgotSent path="/forgot-sent" />

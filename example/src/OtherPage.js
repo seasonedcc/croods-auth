@@ -21,7 +21,7 @@ export default () => {
           className="btn btn-primary"
           onClick={() => setCurrentUser({ email: 'foo@bar.com' }, true)}
         >
-          Change user email
+          Change user email to a blocked user
         </button>
       )}
       <p>
