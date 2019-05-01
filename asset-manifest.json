@@ -1,13 +1,13 @@
 {
   "main.css": "/croods-light-auth/static/css/main.ead4bb47.chunk.css",
-  "main.js": "/croods-light-auth/static/js/main.80c17d6e.chunk.js",
-  "main.js.map": "/croods-light-auth/static/js/main.80c17d6e.chunk.js.map",
+  "main.js": "/croods-light-auth/static/js/main.6b3bac1e.chunk.js",
+  "main.js.map": "/croods-light-auth/static/js/main.6b3bac1e.chunk.js.map",
   "runtime~main.js": "/croods-light-auth/static/js/runtime~main.07618278.js",
   "runtime~main.js.map": "/croods-light-auth/static/js/runtime~main.07618278.js.map",
-  "static/js/2.3598d231.chunk.js": "/croods-light-auth/static/js/2.3598d231.chunk.js",
-  "static/js/2.3598d231.chunk.js.map": "/croods-light-auth/static/js/2.3598d231.chunk.js.map",
+  "static/js/2.af2e62dc.chunk.js": "/croods-light-auth/static/js/2.af2e62dc.chunk.js",
+  "static/js/2.af2e62dc.chunk.js.map": "/croods-light-auth/static/js/2.af2e62dc.chunk.js.map",
   "index.html": "/croods-light-auth/index.html",
-  "precache-manifest.8811a1efb20774fb1d7b1ef353c1d7c4.js": "/croods-light-auth/precache-manifest.8811a1efb20774fb1d7b1ef353c1d7c4.js",
+  "precache-manifest.4d49c779191ccde19f54635a1d1973d0.js": "/croods-light-auth/precache-manifest.4d49c779191ccde19f54635a1d1973d0.js",
   "service-worker.js": "/croods-light-auth/service-worker.js",
   "static/css/main.ead4bb47.chunk.css.map": "/croods-light-auth/static/css/main.ead4bb47.chunk.css.map"
 }
