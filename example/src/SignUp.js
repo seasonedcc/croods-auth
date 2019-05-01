@@ -6,7 +6,7 @@ import basePath from './basePath'
 import Input from './Input'
 
 export default () => {
-  const [{ signingUp, signUpError, error, ...options }] = useSignUp({
+  const [{ signingUp, error, ...options }] = useSignUp({
     stateId: 'signUp',
     afterSuccess: () => navigate(`${basePath}/`),
   })
