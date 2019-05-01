@@ -1,3 +1,4 @@
+import Authorize from './Authorize'
 import uCU from './useCurrentUser'
 import uSI from './useSignIn'
 import uSU from './useSignUp'
@@ -6,6 +7,7 @@ import uDA from './useDeleteAccount'
 import uFP from './useForgotPassword'
 import uRP from './useResetPassword'
 
+export const Auth = Authorize
 export const useCurrentUser = uCU
 export const useSignIn = uSI
 export const useSignUp = uSU
@@ -15,6 +17,7 @@ export const useForgotPassword = uFP
 export const useResetPassword = uRP
 
 export default {
+  Auth,
   useCurrentUser,
   useSignIn,
   useSignUp,
