@@ -6,7 +6,7 @@ import basePath from './basePath'
 
 export default ({ currentUser }) => {
   const [{ signingOut }, signOut] = useSignOut()
-  const [{ deletingAccount }, deleteAccount] = useDeleteAccount()
+  const [{ deleting }, deleteAccount] = useDeleteAccount()
 
   return (
     <div style={{ textAlign: 'center' }}>
@@ -22,7 +22,7 @@ export default ({ currentUser }) => {
           shouldDelete && deleteAccount()
         }}
       >
-        {deletingAccount ? 'Deleting account...' : 'Delete account'}
+        {deleting ? 'Deleting account...' : 'Delete account'}
       </button>
       <p style={{ marginTop: '1rem' }}>
         <Link to={`${basePath}/other-page`}>Go to other page</Link>

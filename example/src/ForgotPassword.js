@@ -6,7 +6,7 @@ import Input from './Input'
 import basePath from './basePath'
 
 export default () => {
-  const [{ sendingForgot, error, formProps, emailProps }] = useForgotPassword({
+  const [{ sending, error, formProps, emailProps }] = useForgotPassword({
     stateId: 'forgot',
     redirectUrl: '/',
     afterSuccess: () => navigate(`${basePath}/forgot-sent`),
@@ -20,7 +20,7 @@ export default () => {
         <Link to={`${basePath}/sign-in`}>{`Go back`}</Link>
       </p>
       <button type="submit" className="btn btn-primary">
-        {sendingForgot ? 'Sending email...' : 'Send reset instructions'}
+        {sending ? 'Sending email...' : 'Send reset instructions'}
       </button>
     </form>
   )

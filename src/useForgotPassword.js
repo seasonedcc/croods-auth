@@ -5,7 +5,7 @@ import getBaseOpts from './getBaseOpts'
 export default (options = {}) => {
   const { name = 'auth', path = 'auth/password', redirectUrl = '/' } = options
   const [formState, { email }] = useFormState()
-  const [{ saving: sendingForgot, saveError: error }, { save }] = useCroods({
+  const [{ saving: sending, saveError: error }, { save }] = useCroods({
     ...getBaseOpts(options),
     name,
     path,
@@ -18,7 +18,7 @@ export default (options = {}) => {
 
   return [
     {
-      sendingForgot,
+      sending,
       error,
       formProps: { onSubmit },
       emailProps: email('email'),
