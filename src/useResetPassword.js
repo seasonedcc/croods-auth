@@ -26,6 +26,7 @@ export default (options = {}) => {
     {
       reseting,
       error,
+      formState,
       passwordProps: password('password'),
       passwordConfirmationProps: password('passwordConfirmation'),
       formProps: { onSubmit },

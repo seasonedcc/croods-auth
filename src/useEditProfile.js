@@ -23,6 +23,7 @@ export default (options, callback) => {
     {
       fields,
       formProps: { onSubmit },
+      formState,
       saving,
       error,
       currentUser,

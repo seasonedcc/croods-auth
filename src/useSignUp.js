@@ -23,6 +23,7 @@ export default (options = {}) => {
       passwordProps: fields.password('password'),
       passwordConfirmationProps: fields.password('passwordConfirmation'),
       formProps: { onSubmit },
+      formState,
       signingUp,
       signedUp,
       error,

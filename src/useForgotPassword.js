@@ -20,6 +20,7 @@ export default (options = {}) => {
     {
       sending,
       error,
+      formState,
       formProps: { onSubmit },
       emailProps: email('email'),
     },

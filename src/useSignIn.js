@@ -22,6 +22,7 @@ export default (options = {}) => {
       emailProps: fields.email('email'),
       passwordProps: fields.password('password'),
       formProps: { onSubmit },
+      formState,
       signingIn,
       signed,
       error,
