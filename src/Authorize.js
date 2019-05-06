@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useLayoutEffect } from 'react'
 import PropTypes from 'prop-types'
 import useCurrentUser from './useCurrentUser'
 
@@ -16,7 +16,7 @@ const Authorize = ({
     unauthorized,
   )
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (unauthorize && currentUser) {
       unauthorize(currentUser) && unauthorized()
     }
