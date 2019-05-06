@@ -7,6 +7,7 @@ import basePath from './basePath'
 import Alert from './Alert'
 import Start from './Start'
 import OtherPage from './OtherPage'
+import EditProfile from './EditProfile'
 import SignIn from './SignIn'
 import SignUp from './SignUp'
 import ForgotPassword from './ForgotPassword'
@@ -38,6 +39,12 @@ export default () => {
             )}
             unauthorize={currentUser => currentUser.email === 'foo@bar.com'}
             path="/other-page"
+          />
+          <Auth
+            Component={EditProfile}
+            setAlert={setAlert}
+            path="/edit-profile"
+            unauthorized={redirect('/sign-in')}
           />
           <SignIn setAlert={setAlert} path="/sign-in" />
           <SignUp setAlert={setAlert} path="/sign-up" />

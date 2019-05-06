@@ -11,6 +11,9 @@ export default ({ currentUser }) => {
   return (
     <div style={{ textAlign: 'center' }}>
       <h2>Logged in as {currentUser.email}</h2>
+      <p>
+        <Link to={`${basePath}/edit-profile`}>Edit Profile</Link>
+      </p>
       <button className="btn btn-primary" onClick={signOut}>
         {signingOut ? 'Signing Out...' : 'Sign Out'}
       </button>{' '}
