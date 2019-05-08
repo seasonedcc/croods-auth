@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { CroodsProvider } from 'croods-light'
-import { Auth } from 'croods-light-auth'
+import { Auth, authHeaders } from 'croods-light-auth'
 import { Router, navigate } from '@reach/router'
 
 import basePath from './basePath'
@@ -16,15 +16,19 @@ import ResetPassword from './ResetPassword'
 
 export default () => {
   const [alert, setAlert] = useState()
-  const redirect = (path, message = 'You must sign in first') => () => {
-    navigate(`${basePath}${path}`)
+  const redirect = (path, message = 'You must sign in first') => async () => {
+    await navigate(`${basePath}${path}`)
     setAlert({ message, type: 'danger' })
   }
 
   return (
     <>
       <Alert alert={alert} close={() => setAlert(null)} />
-      <CroodsProvider debugActions baseUrl={process.env.REACT_APP_API_URL}>
+      <CroodsProvider
+        headers={authHeaders}
+        debugActions
+        baseUrl={process.env.REACT_APP_API_URL}
+      >
         <Router basepath={basePath}>
           <Auth
             Component={Start}

@@ -1,8 +1,11 @@
 import { useCroods } from 'croods-light'
 import getBaseOpts from './getBaseOpts'
+import { clearHeaders } from './persistHeaders'
+import useMounted from './useMounted'
 
-export default (options = {}) => {
-  const { name = 'auth', path = 'auth/sign_out' } = options
+export default (options = {}, callback) => {
+  const opts = { ...getBaseOpts(options, 'signOut'), id: 'currentUser' }
+  const mounted = useMounted()
   const [
     {
       info: currentUser,
@@ -12,17 +15,19 @@ export default (options = {}) => {
     },
     { destroy, setInfo },
   ] = useCroods({
-    ...getBaseOpts(options),
-    name,
-    id: 'currentUser',
-    path,
+    ...opts,
+    afterSuccess: response => {
+      clearHeaders(opts)
+      opts.afterSuccess && opts.afterSuccess(response)
+    },
   })
 
   return [
     { currentUser, signingOut, signedOut, error },
     async () => {
       await destroy(true)()
-      setInfo(null)
+      callback && callback()
+      mounted && setInfo(null)
     },
   ]
 }

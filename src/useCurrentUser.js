@@ -1,20 +1,30 @@
-import { useEffect } from 'react'
+import { useEffect, useCallback } from 'react'
 import { useCroods } from 'croods-light'
 import getBaseOpts from './getBaseOpts'
+import { getHeaders } from './persistHeaders'
 
 export default (options, callback) => {
-  const { name = 'auth', path = 'auth/validate_token' } = options || {}
-  const [{ info: currentUser, fetchingInfo }, { fetch, setInfo }] = useCroods({
-    ...getBaseOpts(options),
+  const opts = {
+    ...getBaseOpts(options, 'currentUser'),
     afterFailure: callback,
     cache: true,
-    name,
     id: 'currentUser',
-    path,
-  })
+  }
+  const [{ info: currentUser, fetchingInfo }, { fetch, setInfo }] = useCroods(
+    opts,
+  )
+
+  const initFetch = useCallback(() => {
+    const headers = getHeaders(opts)
+    if (headers.accessToken) {
+      fetch('currentUser')
+    } else {
+      callback && callback()
+    }
+  }, [callback, fetch, opts])
 
   useEffect(() => {
-    currentUser || fetch('currentUser')
+    currentUser || initFetch()
     // eslint-disable-next-line
   }, [currentUser])
 

@@ -1,14 +1,22 @@
 import { useCroods } from 'croods-light'
 import { useFormState } from 'react-use-form-state'
 import getBaseOpts from './getBaseOpts'
+import { saveHeaders } from './persistHeaders'
 
-export default (options = {}) => {
-  const { name = 'auth', path = 'auth/sign_in' } = options
+export default (options = {}, callback) => {
   const [formState, fields] = useFormState()
+  const opts = getBaseOpts(options, 'signIn')
   const [
     { saving: signingIn, saved: signed, saveError: error },
     { save, setInfo },
-  ] = useCroods({ ...getBaseOpts(options), name, path })
+  ] = useCroods({
+    ...opts,
+    afterSuccess: response => {
+      saveHeaders(response, opts)
+      opts.afterSuccess && opts.afterSuccess(response)
+      callback && callback()
+    },
+  })
 
   const onSubmit = async event => {
     event && event.preventDefault && event.preventDefault()
