@@ -25,6 +25,6 @@ export default (options = {}) => {
 
   return [
     { currentUser, deleting, deleted, error },
-    destroy(currentUser && currentUser.id),
+    destroy({ id: currentUser && currentUser.id }),
   ]
 }

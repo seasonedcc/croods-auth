@@ -12,7 +12,7 @@ export default (options = {}) => {
     event && event.preventDefault && event.preventDefault()
     const params = new URLSearchParams(location.search)
     const resetPasswordToken = params.get('reset_password_token')
-    save(true)({ ...formState.values, resetPasswordToken })
+    save({ method: 'PUT' })({ ...formState.values, resetPasswordToken })
   }
 
   return [

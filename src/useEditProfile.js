@@ -11,7 +11,7 @@ export default (options, callback) => {
 
   const onSubmit = async event => {
     event && event.preventDefault && event.preventDefault()
-    const user = await save(true)(formState.values)
+    const user = await save({ method: 'PUT' })(formState.values)
     user && setCurrentUser(user)
   }
 
@@ -24,6 +24,6 @@ export default (options, callback) => {
       error,
       currentUser,
     },
-    save(true),
+    save({ method: 'PUT' }),
   ]
 }
