@@ -1,11 +1,13 @@
 import React from 'react'
-import { Link } from '@reach/router'
+import { Link, navigate } from '@reach/router'
 import { useSignOut, useDeleteAccount } from 'croods-light-auth'
 
 import basePath from './basePath'
 
 export default ({ currentUser }) => {
-  const [{ signingOut }, signOut] = useSignOut()
+  const [{ signingOut }, signOut] = useSignOut(null, () =>
+    navigate(`${basePath}/sign-in`),
+  )
   const [{ deleting }, deleteAccount] = useDeleteAccount()
 
   return (

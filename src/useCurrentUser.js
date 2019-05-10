@@ -8,7 +8,7 @@ export default (options, callback) => {
     ...getBaseOpts(options, 'currentUser'),
     afterFailure: callback,
     cache: true,
-    id: 'currentUser',
+    operation: 'info',
   }
   const [{ info: currentUser, fetchingInfo }, { fetch, setInfo }] = useCroods(
     opts,
@@ -17,7 +17,7 @@ export default (options, callback) => {
   const initFetch = useCallback(() => {
     const headers = getHeaders(opts)
     if (headers.accessToken) {
-      fetch('currentUser')
+      fetch()()
     } else {
       callback && callback()
     }

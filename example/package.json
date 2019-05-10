@@ -6,7 +6,7 @@
   "private": true,
   "dependencies": {
     "@reach/router": "^1.2.1",
-    "croods-light": "^0.1.0",
+    "croods-light": "link:../../croods-light/",
     "croods-light-auth": "link:..",
     "lodash": "^4.17.11",
     "prop-types": "^15.6.2",
