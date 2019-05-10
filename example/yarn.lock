@@ -2335,9 +2335,14 @@ create-react-context@^0.2.1:
   version "0.0.0"
   uid ""
 
-"croods-light@link:../../croods-light":
-  version "0.0.0"
-  uid ""
+croods-light@0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/croods-light/-/croods-light-0.5.0.tgz#8ea4fc20727d2022525b68ef0bb87bb274916f19"
+  dependencies:
+    axios "^0.18.0"
+    lodash "^4.17.11"
+    lodash-humps "^3.1.2"
+    prop-types "^15.7.2"
 
 cross-spawn@6.0.5, cross-spawn@^6.0.0, cross-spawn@^6.0.5:
   version "6.0.5"
