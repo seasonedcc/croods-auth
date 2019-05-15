@@ -5,10 +5,9 @@ import { useSignOut, useDeleteAccount } from 'croods-light-auth'
 import basePath from './basePath'
 
 export default ({ currentUser }) => {
-  const [{ signingOut }, signOut] = useSignOut(null, () =>
-    navigate(`${basePath}/sign-in`),
-  )
+  const [{ signingOut }, signOut] = useSignOut()
   const [{ deleting }, deleteAccount] = useDeleteAccount()
+  const afterSignOut = () => navigate(`${basePath}/sign-in`)
 
   return (
     <div style={{ textAlign: 'center' }}>
@@ -16,7 +15,7 @@ export default ({ currentUser }) => {
       <p>
         <Link to={`${basePath}/edit-profile`}>Edit Profile</Link>
       </p>
-      <button className="btn btn-primary" onClick={signOut}>
+      <button className="btn btn-primary" onClick={() => signOut(afterSignOut)}>
         {signingOut ? 'Signing Out...' : 'Sign Out'}
       </button>{' '}
       <button

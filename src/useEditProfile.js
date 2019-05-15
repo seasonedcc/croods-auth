@@ -3,9 +3,9 @@ import { useFormState } from 'react-use-form-state'
 import getBaseOpts from './getBaseOpts'
 import useCurrentUser from './useCurrentUser'
 
-export default (options, callback) => {
+export default (options, currentUserOptions) => {
   const opts = getBaseOpts(options, 'editProfile')
-  const [{ currentUser }, setCurrentUser] = useCurrentUser(null, callback)
+  const [{ currentUser }, setCurrentUser] = useCurrentUser(currentUserOptions)
   const [formState, fields] = useFormState(currentUser)
   const [{ saving, saveError: error }, { save }] = useCroods(opts)
 

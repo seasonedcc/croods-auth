@@ -3,7 +3,7 @@ import getBaseOpts from './getBaseOpts'
 import { clearHeaders } from './persistHeaders'
 import useMounted from './useMounted'
 
-export default (options = {}, callback) => {
+export default (options = {}) => {
   const opts = { ...getBaseOpts(options, 'signOut'), operation: 'info' }
   const mounted = useMounted()
   const [
@@ -24,9 +24,9 @@ export default (options = {}, callback) => {
 
   return [
     { currentUser, signingOut, signedOut, error },
-    async () => {
+    async callback => {
       await destroy()()
-      callback && callback()
+      if (typeof callback === 'function') callback()
       mounted && setInfo(null)
     },
   ]

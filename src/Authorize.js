@@ -11,10 +11,9 @@ const Authorize = ({
   unauthorize,
   ...props
 }) => {
-  const [{ currentUser, fetchingUser }, setCurrentUser] = useCurrentUser(
-    null,
-    unauthorized,
-  )
+  const [{ currentUser, validating }, setCurrentUser] = useCurrentUser({
+    afterFailure: unauthorized,
+  })
 
   useLayoutEffect(() => {
     if (unauthorize && currentUser) {
@@ -22,7 +21,7 @@ const Authorize = ({
     }
   }, [currentUser, unauthorize, unauthorized])
 
-  return fetchingUser || !currentUser ? (
+  return validating || !currentUser ? (
     loading
   ) : (
     <Component

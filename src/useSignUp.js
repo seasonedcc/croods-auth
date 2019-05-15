@@ -3,7 +3,7 @@ import { useFormState } from 'react-use-form-state'
 import getBaseOpts from './getBaseOpts'
 import { saveHeaders } from './persistHeaders'
 
-export default (options = {}, callback) => {
+export default (options = {}) => {
   const [formState, fields] = useFormState()
   const opts = getBaseOpts(options, 'signUp')
   const [
@@ -14,7 +14,6 @@ export default (options = {}, callback) => {
     afterSuccess: response => {
       saveHeaders(response, opts)
       opts.afterSuccess && opts.afterSuccess(response)
-      callback && callback()
     },
   })
 
