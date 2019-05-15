@@ -3,17 +3,18 @@ import { useFormState } from 'react-use-form-state'
 import getBaseOpts from './getBaseOpts'
 
 export default (options = {}) => {
-  const { redirectUrl = '/' } = options
   const opts = getBaseOpts(options, 'forgotPassword')
-  const [formState, { email }] = useFormState()
+  const [formState, fields] = useFormState()
   const [{ saving: sending, saveError: error }, { save }] = useCroods(opts)
 
-  const send = (userEmail, url = redirectUrl) =>
-    save()({ email: userEmail, redirectUrl: url })
+  const send = data => {
+    const redirectUrl = options.redirectUrl || '/'
+    return save()({ redirectUrl, ...data })
+  }
 
   const onSubmit = event => {
     event && event.preventDefault && event.preventDefault()
-    send(formState.values.email, redirectUrl)
+    send(formState.values)
   }
 
   return [
@@ -22,7 +23,8 @@ export default (options = {}) => {
       error,
       formState,
       formProps: { onSubmit },
-      emailProps: email('email'),
+      emailProps: fields.email('email'),
+      fields,
     },
     send,
   ]

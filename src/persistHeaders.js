@@ -4,7 +4,7 @@ import isFunction from 'lodash/isFunction'
 const KEY = 'authCredentials'
 
 export const saveHeaders = (response, options) => {
-  const { storage = localStorage, key = KEY } = options || {}
+  const { storage = localStorage, storageKey = KEY } = options || {}
   if (isFunction(storage.setItem)) {
     const credentials = {
       accessToken: get(response, 'headers.access-token'),
@@ -15,20 +15,20 @@ export const saveHeaders = (response, options) => {
     }
 
     if (credentials.accessToken) {
-      storage.setItem(key, JSON.stringify(credentials))
+      storage.setItem(storageKey, JSON.stringify(credentials))
     }
   }
 }
 
 export const clearHeaders = options => {
-  const { storage = localStorage, key = KEY } = options || {}
-  storage.removeItem(key)
+  const { storage = localStorage, storageKey = KEY } = options || {}
+  storage.removeItem(storageKey)
 }
 
 export const getHeaders = options => {
-  const { storage = localStorage, key = KEY } = options || {}
+  const { storage = localStorage, storageKey = KEY } = options || {}
   try {
-    const credentials = JSON.parse(storage.getItem(key))
+    const credentials = JSON.parse(storage.getItem(storageKey))
     return credentials || {}
   } catch (error) {
     return {}

@@ -2,10 +2,12 @@ import { useCroods } from 'croods-light'
 import { useFormState } from 'react-use-form-state'
 import getBaseOpts from './getBaseOpts'
 
+const DEFAULT_KEY = 'reset_password_token'
+
 export default (options = {}) => {
-  const { location = window.location } = options
+  const { location = window.location, tokenKey = DEFAULT_KEY } = options
   const opts = getBaseOpts(options)
-  const [formState, { password }] = useFormState()
+  const [formState, fields] = useFormState()
   const [{ saving: reseting, saveError: error }, { save }] = useCroods(opts)
 
   const reset = save({ method: 'PUT' })
@@ -13,8 +15,8 @@ export default (options = {}) => {
   const onSubmit = event => {
     event && event.preventDefault && event.preventDefault()
     const params = new URLSearchParams(location.search)
-    const resetPasswordToken = params.get('reset_password_token')
-    reset({ ...formState.values, resetPasswordToken })
+    const token = params.get(tokenKey)
+    reset({ ...formState.values, [DEFAULT_KEY]: token })
   }
 
   return [
@@ -22,9 +24,10 @@ export default (options = {}) => {
       reseting,
       error,
       formState,
-      passwordProps: password('password'),
-      passwordConfirmationProps: password('passwordConfirmation'),
+      passwordProps: fields.password('password'),
+      passwordConfirmationProps: fields.password('passwordConfirmation'),
       formProps: { onSubmit },
+      fields,
     },
     reset,
   ]
