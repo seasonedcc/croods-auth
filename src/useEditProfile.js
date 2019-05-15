@@ -15,7 +15,7 @@ export default (options, callback) => {
     return user
   }
 
-  const onSubmit = async event => {
+  const onSubmit = event => {
     event && event.preventDefault && event.preventDefault()
     return saveData(formState.values)
   }
