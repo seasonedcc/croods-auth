@@ -17,10 +17,14 @@ export default (options = {}) => {
     },
   })
 
-  const onSubmit = async event => {
-    event && event.preventDefault && event.preventDefault()
-    const saved = await save()(formState.values)
+  const signUp = async data => {
+    const saved = await save()(data)
     saved && setInfo(saved)
+  }
+
+  const onSubmit = event => {
+    event && event.preventDefault && event.preventDefault()
+    return signUp(formState.values)
   }
 
   return [
@@ -35,6 +39,6 @@ export default (options = {}) => {
       signedUp,
       error,
     },
-    save(),
+    signUp,
   ]
 }

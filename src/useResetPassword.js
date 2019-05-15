@@ -8,11 +8,13 @@ export default (options = {}) => {
   const [formState, { password }] = useFormState()
   const [{ saving: reseting, saveError: error }, { save }] = useCroods(opts)
 
+  const reset = save({ method: 'PUT' })
+
   const onSubmit = event => {
     event && event.preventDefault && event.preventDefault()
     const params = new URLSearchParams(location.search)
     const resetPasswordToken = params.get('reset_password_token')
-    save({ method: 'PUT' })({ ...formState.values, resetPasswordToken })
+    reset({ ...formState.values, resetPasswordToken })
   }
 
   return [
@@ -24,6 +26,6 @@ export default (options = {}) => {
       passwordConfirmationProps: password('passwordConfirmation'),
       formProps: { onSubmit },
     },
-    onSubmit,
+    reset,
   ]
 }

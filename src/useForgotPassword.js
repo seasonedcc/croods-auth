@@ -8,9 +8,12 @@ export default (options = {}) => {
   const [formState, { email }] = useFormState()
   const [{ saving: sending, saveError: error }, { save }] = useCroods(opts)
 
+  const send = (userEmail, url = redirectUrl) =>
+    save()({ email: userEmail, redirectUrl: url })
+
   const onSubmit = event => {
     event && event.preventDefault && event.preventDefault()
-    save()({ email: formState.values.email, redirectUrl })
+    send(formState.values.email, redirectUrl)
   }
 
   return [
@@ -21,6 +24,6 @@ export default (options = {}) => {
       formProps: { onSubmit },
       emailProps: email('email'),
     },
-    url => save()({ email: formState.values.email, redirectUrl: url }),
+    send,
   ]
 }
