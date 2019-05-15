@@ -9,10 +9,15 @@ export default (options, callback) => {
   const [formState, fields] = useFormState(currentUser)
   const [{ saving, saveError: error }, { save }] = useCroods(opts)
 
+  const saveData = async data => {
+    const user = await save({ method: 'PUT' })(data)
+    if (user) setCurrentUser(user)
+    return user
+  }
+
   const onSubmit = async event => {
     event && event.preventDefault && event.preventDefault()
-    const user = await save({ method: 'PUT' })(formState.values)
-    user && setCurrentUser(user)
+    return saveData(formState.values)
   }
 
   return [
@@ -24,6 +29,6 @@ export default (options, callback) => {
       error,
       currentUser,
     },
-    save({ method: 'PUT' }),
+    saveData,
   ]
 }
