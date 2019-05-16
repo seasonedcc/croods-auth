@@ -1,6 +1,6 @@
 {
   "name": "croods-auth",
-  "version": "1.0.0-rc.00",
+  "version": "1.0.0-rc.0",
   "description": "Authentication made easy with Croods",
   "author": "SeasonedSoftware",
   "license": "MIT",
