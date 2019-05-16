@@ -1,4 +1,4 @@
-import { useCroods } from 'croods-light'
+import { useCroods } from 'croods'
 import getBaseOpts from './getBaseOpts'
 import { clearHeaders } from './persistHeaders'
 import useMounted from './useMounted'

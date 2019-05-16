@@ -1,5 +1,5 @@
 import { useEffect, useCallback } from 'react'
-import { useCroods } from 'croods-light'
+import { useCroods } from 'croods'
 import getBaseOpts from './getBaseOpts'
 import { getHeaders } from './persistHeaders'
 

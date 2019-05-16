@@ -1,4 +1,4 @@
-import { useCroods } from 'croods-light'
+import { useCroods } from 'croods'
 import { useFormState } from 'react-use-form-state'
 import getBaseOpts from './getBaseOpts'
 import { saveHeaders } from './persistHeaders'

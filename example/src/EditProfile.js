@@ -1,6 +1,6 @@
 import React from 'react'
 import { navigate } from '@reach/router'
-import { useEditProfile } from 'croods-light-auth'
+import { useEditProfile } from 'croods-auth'
 
 import Input from './Input'
 import basePath from './basePath'

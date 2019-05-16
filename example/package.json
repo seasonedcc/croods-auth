@@ -1,13 +1,13 @@
 {
-  "name": "croods-light-auth-example",
+  "name": "croods-auth-example",
   "homepage": "https://SeasonedSoftware.github.io/croods-light-auth",
   "version": "0.0.0",
   "license": "MIT",
   "private": true,
   "dependencies": {
     "@reach/router": "^1.2.1",
-    "croods-light": "0.5.3",
-    "croods-light-auth": "link:..",
+    "croods": "^1.0.0",
+    "croods-auth": "link:..",
     "lodash": "^4.17.11",
     "prop-types": "^15.6.2",
     "react": "^16.8.6",

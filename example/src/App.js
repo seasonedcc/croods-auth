@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { CroodsProvider } from 'croods-light'
-import { Auth, authHeaders } from 'croods-light-auth'
+import { CroodsProvider } from 'croods'
+import { Auth, authHeaders } from 'croods-auth'
 import { Router, navigate } from '@reach/router'
 
 import basePath from './basePath'

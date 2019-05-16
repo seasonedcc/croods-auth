@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, navigate } from '@reach/router'
-import { useSignOut, useDeleteAccount } from 'croods-light-auth'
+import { useSignOut, useDeleteAccount } from 'croods-auth'
 
 import basePath from './basePath'
 

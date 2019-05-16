@@ -1,6 +1,6 @@
 import React from 'react'
 import { navigate, Link } from '@reach/router'
-import { useForgotPassword } from 'croods-light-auth'
+import { useForgotPassword } from 'croods-auth'
 
 import Input from './Input'
 import basePath from './basePath'

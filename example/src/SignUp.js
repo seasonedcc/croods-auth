@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSignUp } from 'croods-light-auth'
+import { useSignUp } from 'croods-auth'
 import { Link, navigate } from '@reach/router'
 
 import basePath from './basePath'

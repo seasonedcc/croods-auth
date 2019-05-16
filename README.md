@@ -1,13 +1,13 @@
 # croods-light-auth
 
-> 
+>
 
 [![NPM](https://img.shields.io/npm/v/croods-light-auth.svg)](https://www.npmjs.com/package/croods-light-auth) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
 ```bash
-npm install --save croods-light-auth
+npm install --save croods-auth
 ```
 
 ## Usage
@@ -15,13 +15,11 @@ npm install --save croods-light-auth
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from 'croods-light-auth'
+import MyComponent from 'croods-auth'
 
 class Example extends Component {
-  render () {
-    return (
-      <MyComponent />
-    )
+  render() {
+    return <MyComponent />
   }
 }
 ```
