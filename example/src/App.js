@@ -37,11 +37,13 @@ export default () => {
           />
           <Auth
             Component={OtherPage}
-            unauthorized={redirect(
-              '/',
-              'You are not authorized to access this page',
-            )}
+            unauthorized={currentUser =>
+              currentUser
+                ? redirect('/', 'You are not authorized to access this page')
+                : redirect('/sign-in')()
+            }
             unauthorize={currentUser => currentUser.email === 'foo@bar.com'}
+            authorizing="Checking foo@bar.com"
             path="/other-page"
           />
           <Auth

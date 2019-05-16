@@ -1,4 +1,4 @@
-import Authorize from './Authorize'
+import Authorize from './Auth'
 import aH from './authHeaders'
 import uCU from './useCurrentUser'
 import uSI from './useSignIn'

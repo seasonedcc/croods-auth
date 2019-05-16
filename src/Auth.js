@@ -6,23 +6,23 @@ const defaultLoading = 'Authorizing...'
 
 const Authorize = ({
   Component,
-  loading = defaultLoading,
+  authorizing = defaultLoading,
   unauthorized,
   unauthorize,
   ...props
 }) => {
   const [{ currentUser, validating }, setCurrentUser] = useCurrentUser({
-    afterFailure: unauthorized,
+    afterFailure: () => unauthorized(currentUser),
   })
 
   useLayoutEffect(() => {
     if (unauthorize && currentUser) {
-      unauthorize(currentUser) && unauthorized()
+      unauthorize(currentUser) && unauthorized(currentUser)
     }
   }, [currentUser, unauthorize, unauthorized])
 
   return validating || !currentUser ? (
-    loading
+    authorizing
   ) : (
     <Component
       {...props}
@@ -36,7 +36,7 @@ Authorize.propTypes = {
   Component: PropTypes.func.isRequired,
   unauthorized: PropTypes.func.isRequired,
   unauthorize: PropTypes.func,
-  loading: PropTypes.element,
+  authorizing: PropTypes.node,
 }
 
 export default Authorize
