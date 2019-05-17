@@ -7,12 +7,7 @@ export default (options = {}) => {
   const opts = getBaseOpts(options, 'deleteAccount')
   const mounted = useMounted()
   const [
-    {
-      info: currentUser,
-      destroying: deleting,
-      destroyError: error,
-      destroyed: deleted,
-    },
+    { info: currentUser, destroying: deleting, destroyError: error },
     { destroy, setInfo },
   ] = useCroods({
     ...opts,
@@ -24,7 +19,7 @@ export default (options = {}) => {
   })
 
   return [
-    { currentUser, deleting, deleted, error },
+    { currentUser, deleting, error },
     destroy({ id: currentUser && currentUser.id }),
   ]
 }

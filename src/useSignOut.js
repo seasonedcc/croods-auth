@@ -7,12 +7,7 @@ export default (options = {}) => {
   const opts = { ...getBaseOpts(options, 'signOut'), operation: 'info' }
   const mounted = useMounted()
   const [
-    {
-      info: currentUser,
-      destroyed: signedOut,
-      destroying: signingOut,
-      destroyError: error,
-    },
+    { info: currentUser, destroying: signingOut, destroyError: error },
     { destroy, setInfo },
   ] = useCroods({
     ...opts,
@@ -23,7 +18,7 @@ export default (options = {}) => {
   })
 
   return [
-    { currentUser, signingOut, signedOut, error },
+    { currentUser, signingOut, error },
     async callback => {
       await destroy()()
       if (typeof callback === 'function') callback()

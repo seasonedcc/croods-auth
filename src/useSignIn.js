@@ -7,7 +7,7 @@ export default (options = {}) => {
   const [formState, fields] = useFormState()
   const opts = getBaseOpts(options, 'signIn')
   const [
-    { saving: signingIn, saved: signed, saveError: error },
+    { saving: signingIn, saveError: error },
     { save, setInfo },
   ] = useCroods({
     ...opts,
@@ -35,7 +35,6 @@ export default (options = {}) => {
       formProps: { onSubmit },
       formState,
       signingIn,
-      signed,
       error,
     },
     signIn,
