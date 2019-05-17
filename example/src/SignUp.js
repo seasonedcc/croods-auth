@@ -31,7 +31,7 @@ export default ({ setAlert }) => {
         </small>
       </Input>
       <Input {...passwordProps} />
-      <Input {...passwordConfirmationProps} error={error} />
+      <Input {...passwordConfirmationProps} />
       <p>
         <Link to={`${basePath}/sign-in`}>Already have an account?</Link>
       </p>

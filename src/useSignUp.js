@@ -32,7 +32,20 @@ export default (options = {}) => {
       fields,
       emailProps: fields.email('email'),
       passwordProps: fields.password('password'),
-      passwordConfirmationProps: fields.password('passwordConfirmation'),
+      passwordConfirmationProps: {
+        ...fields.password({
+          name: 'passwordConfirmation',
+          validate: (value, values) => {
+            if (value !== values.password) {
+              return 'Password fields must be equal'
+            }
+            return undefined
+          },
+        }),
+        error:
+          formState.touched.passwordConfirmation &&
+          formState.errors.passwordConfirmation,
+      },
       formProps: { onSubmit },
       formState,
       signingUp,
