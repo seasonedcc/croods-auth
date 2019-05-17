@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "ef44c037f314255c72be",
+    "revision": "ae5967a913400d74e71a",
     "url": "/croods-auth/static/css/main.8c11e78d.chunk.css"
   },
   {
-    "revision": "ef44c037f314255c72be",
-    "url": "/croods-auth/static/js/main.bc49df99.chunk.js"
+    "revision": "ae5967a913400d74e71a",
+    "url": "/croods-auth/static/js/main.36afd06a.chunk.js"
   },
   {
     "revision": "67e88749e3a74f5f7323",
@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/croods-auth/static/js/2.1c7a6389.chunk.js"
   },
   {
-    "revision": "433a1d085f37c3307f951388ce8452d2",
+    "revision": "25adbc201128841493926d326cdee2a7",
     "url": "/croods-auth/index.html"
   }
 ];
