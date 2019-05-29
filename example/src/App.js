@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { CroodsProvider } from 'croods'
-import { Auth, authHeaders } from 'croods-auth'
+import { Auth, authHeaders, saveHeaders } from 'croods-auth'
 import { Router, navigate } from '@reach/router'
 
 import basePath from './basePath'
@@ -25,6 +25,7 @@ export default () => {
     <>
       <Alert alert={alert} close={() => setAlert(null)} />
       <CroodsProvider
+        afterHeaders={saveHeaders}
         headers={authHeaders}
         debugActions
         baseUrl={process.env.REACT_APP_API_URL}

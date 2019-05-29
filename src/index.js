@@ -1,4 +1,5 @@
 import Authorize from './Auth'
+import { saveHeaders as sH } from './persistHeaders'
 import aH from './authHeaders'
 import uCU from './useCurrentUser'
 import uSI from './useSignIn'
@@ -19,6 +20,7 @@ export const useDeleteAccount = uDA
 export const useEditProfile = uEP
 export const useForgotPassword = uFP
 export const useResetPassword = uRP
+export const saveHeaders = sH
 
 export default {
   Auth,
@@ -31,4 +33,5 @@ export default {
   useDeleteAccount,
   useForgotPassword,
   useResetPassword,
+  saveHeaders,
 }
