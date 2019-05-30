@@ -4,6 +4,8 @@ import { Link, navigate } from '@reach/router'
 
 import basePath from './basePath'
 import Input from './Input'
+import Error from './Error'
+import { presence, minWords } from './validations'
 
 export default ({ setAlert }) => {
   const [{ signingUp, error, ...options }] = useSignUp({
@@ -17,21 +19,25 @@ export default ({ setAlert }) => {
     emailProps,
     passwordProps,
     passwordConfirmationProps,
-    fields,
+    fieldProps,
     formProps,
   } = options
 
   return (
     <form {...formProps}>
       <h2>Sign Up</h2>
-      <Input {...fields.text('name')} label="Full name" />
+      <Input
+        {...fieldProps('text', 'name', [presence(), minWords(2)])}
+        label="Full name"
+      />
       <Input {...emailProps} label="Enter email">
         <small id="emailHelp" className="form-text text-muted">
           {`We'll never share your email with anyone else.`}
         </small>
       </Input>
       <Input {...passwordProps} />
-      <Input {...passwordConfirmationProps} error={error} />
+      <Input {...passwordConfirmationProps} />
+      <Error message={error} />
       <p>
         <Link to={`${basePath}/sign-in`}>Already have an account?</Link>
       </p>

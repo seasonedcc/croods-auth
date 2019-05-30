@@ -1,6 +1,12 @@
 import { useCroods } from 'croods'
 import { useFormState } from 'react-use-form-state'
 import getBaseOpts from './getBaseOpts'
+import {
+  commonFields,
+  getFieldError,
+  getFieldProps,
+  isValidForm,
+} from './formHelpers'
 
 const DEFAULT_KEY = 'reset_password_token'
 
@@ -10,24 +16,36 @@ export default (options = {}) => {
   const [formState, fields] = useFormState()
   const [{ saving: reseting, saveError: error }, { save }] = useCroods(opts)
 
+  const isFormValid = isValidForm(formState)
+
   const reset = save({ method: 'PUT' })
 
   const onSubmit = event => {
     event && event.preventDefault && event.preventDefault()
     const params = new URLSearchParams(location.search)
     const token = params.get(tokenKey)
-    reset({ ...formState.values, [DEFAULT_KEY]: token })
+    return isFormValid
+      ? reset({ ...formState.values, [DEFAULT_KEY]: token })
+      : undefined
   }
+
+  const fieldError = getFieldError(formState)
+  const fieldProps = getFieldProps(fields, formState)
 
   return [
     {
+      fields,
+      passwordProps: fieldProps(...commonFields.password),
+      passwordConfirmationProps: fieldProps(
+        ...commonFields.passwordConfirmation,
+      ),
+      formProps: { onSubmit },
+      fieldProps,
+      fieldError,
+      isFormValid,
+      formState,
       reseting,
       error,
-      formState,
-      passwordProps: fields.password('password'),
-      passwordConfirmationProps: fields.password('passwordConfirmation'),
-      formProps: { onSubmit },
-      fields,
     },
     reset,
   ]

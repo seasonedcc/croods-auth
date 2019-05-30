@@ -3,6 +3,7 @@ import { navigate, Link } from '@reach/router'
 import { useForgotPassword } from 'croods-auth'
 
 import Input from './Input'
+import Error from './Error'
 import basePath from './basePath'
 
 export default () => {
@@ -15,7 +16,8 @@ export default () => {
   return (
     <form {...formProps}>
       <h2>Forgot your password?</h2>
-      <Input {...emailProps} error={error} />
+      <Input {...emailProps} />
+      <Error message={error} />
       <p>
         <Link to={`${basePath}/sign-in`}>{`Go back`}</Link>
       </p>
