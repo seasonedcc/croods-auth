@@ -3,6 +3,7 @@ import { navigate, Link } from '@reach/router'
 import { useSignIn } from 'croods-auth'
 
 import Input from './Input'
+import Error from './Error'
 import basePath from './basePath'
 
 export default ({ setAlert }) => {
@@ -19,7 +20,8 @@ export default ({ setAlert }) => {
     <form {...formProps}>
       <h2>Sign In</h2>
       <Input {...emailProps} label="Email address" />
-      <Input {...passwordProps} error={error} />
+      <Input {...passwordProps} />
+      <Error message={error} />
       <p>
         <Link to={`${basePath}/sign-up`}>{`Don't have an account?`}</Link>
       </p>

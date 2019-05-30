@@ -2,12 +2,15 @@ import { useCroods } from 'croods'
 import { useFormState } from 'react-use-form-state'
 import getBaseOpts from './getBaseOpts'
 import useCurrentUser from './useCurrentUser'
+import { getFieldError, getFieldProps, isValidForm } from './formHelpers'
 
 export default (options, currentUserOptions) => {
   const opts = getBaseOpts(options, 'editProfile')
   const [{ currentUser }, setCurrentUser] = useCurrentUser(currentUserOptions)
   const [formState, fields] = useFormState(currentUser)
   const [{ saving, saveError: error }, { save }] = useCroods(opts)
+
+  const isFormValid = isValidForm(formState)
 
   const saveData = async data => {
     const user = await save({ method: 'PUT' })(data)
@@ -17,17 +20,23 @@ export default (options, currentUserOptions) => {
 
   const onSubmit = event => {
     event && event.preventDefault && event.preventDefault()
-    return saveData(formState.values)
+    return isFormValid ? saveData(formState.values) : undefined
   }
+
+  const fieldError = getFieldError(formState)
+  const fieldProps = getFieldProps(fields, formState)
 
   return [
     {
+      currentUser,
       fields,
       formProps: { onSubmit },
+      fieldProps,
+      fieldError,
       formState,
+      isFormValid,
       saving,
       error,
-      currentUser,
     },
     saveData,
   ]

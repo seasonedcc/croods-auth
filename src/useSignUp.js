@@ -2,6 +2,12 @@ import { useCroods } from 'croods'
 import { useFormState } from 'react-use-form-state'
 import getBaseOpts from './getBaseOpts'
 import { saveHeaders } from './persistHeaders'
+import {
+  commonFields,
+  getFieldError,
+  getFieldProps,
+  isValidForm,
+} from './formHelpers'
 
 export default (options = {}) => {
   const [formState, fields] = useFormState()
@@ -17,6 +23,8 @@ export default (options = {}) => {
     },
   })
 
+  const isFormValid = isValidForm(formState)
+
   const signUp = async data => {
     const saved = await save()(data)
     saved && setInfo(saved)
@@ -24,30 +32,25 @@ export default (options = {}) => {
 
   const onSubmit = event => {
     event && event.preventDefault && event.preventDefault()
-    return signUp(formState.values)
+    return isFormValid ? signUp(formState.values) : undefined
   }
+
+  const fieldError = getFieldError(formState)
+  const fieldProps = getFieldProps(fields, formState)
 
   return [
     {
       fields,
-      emailProps: fields.email('email'),
-      passwordProps: fields.password('password'),
-      passwordConfirmationProps: {
-        ...fields.password({
-          name: 'passwordConfirmation',
-          validate: (value, values) => {
-            if (value !== values.password) {
-              return 'Password fields must be equal'
-            }
-            return undefined
-          },
-        }),
-        error:
-          formState.touched.passwordConfirmation &&
-          formState.errors.passwordConfirmation,
-      },
+      emailProps: fieldProps(...commonFields.email),
+      passwordProps: fieldProps(...commonFields.password),
+      passwordConfirmationProps: fieldProps(
+        ...commonFields.passwordConfirmation,
+      ),
       formProps: { onSubmit },
+      fieldProps,
+      fieldError,
       formState,
+      isFormValid,
       signingUp,
       error,
     },
