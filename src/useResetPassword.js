@@ -12,7 +12,7 @@ const DEFAULT_KEY = 'reset_password_token'
 
 export default (options = {}) => {
   const { location = window.location, tokenKey = DEFAULT_KEY } = options
-  const opts = getBaseOpts(options)
+  const opts = getBaseOpts(options, 'resetPassword')
   const [formState, fields] = useFormState()
   const [{ saving: reseting, saveError: error }, { save }] = useCroods(opts)
 
