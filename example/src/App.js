@@ -25,7 +25,7 @@ export default () => {
     <>
       <Alert alert={alert} close={() => setAlert(null)} />
       <CroodsProvider
-        afterHeaders={saveHeaders}
+        handleResponseHeaders={saveHeaders}
         headers={authHeaders}
         debugActions
         baseUrl={process.env.REACT_APP_API_URL}

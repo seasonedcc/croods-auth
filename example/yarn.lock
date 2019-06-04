@@ -2335,9 +2335,9 @@ create-react-context@^0.2.1:
   version "0.0.0"
   uid ""
 
-croods@^1.0.0:
-  version "1.0.0-rc.1"
-  resolved "https://registry.yarnpkg.com/croods/-/croods-1.0.0-rc.1.tgz#17338b30f4dd3e82b361890a62c5e13426488396"
+croods@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/croods/-/croods-1.0.1.tgz#e5e1d1ac810f494239509fb18a6cf3e7c56d0454"
   dependencies:
     axios "^0.18.0"
     lodash "^4.17.11"
