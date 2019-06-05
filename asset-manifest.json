@@ -1,13 +1,15 @@
 {
-  "main.css": "/croods-auth/static/css/main.8c11e78d.chunk.css",
-  "main.js": "/croods-auth/static/js/main.5a4372d2.chunk.js",
-  "main.js.map": "/croods-auth/static/js/main.5a4372d2.chunk.js.map",
-  "runtime~main.js": "/croods-auth/static/js/runtime~main.ea3ad9c0.js",
-  "runtime~main.js.map": "/croods-auth/static/js/runtime~main.ea3ad9c0.js.map",
-  "static/js/2.1c7a6389.chunk.js": "/croods-auth/static/js/2.1c7a6389.chunk.js",
-  "static/js/2.1c7a6389.chunk.js.map": "/croods-auth/static/js/2.1c7a6389.chunk.js.map",
-  "index.html": "/croods-auth/index.html",
-  "precache-manifest.d743f6fad26144af3b41e63d0af67b9d.js": "/croods-auth/precache-manifest.d743f6fad26144af3b41e63d0af67b9d.js",
-  "service-worker.js": "/croods-auth/service-worker.js",
-  "static/css/main.8c11e78d.chunk.css.map": "/croods-auth/static/css/main.8c11e78d.chunk.css.map"
+  "files": {
+    "main.css": "/croods-auth/static/css/main.a2b7b0b6.chunk.css",
+    "main.js": "/croods-auth/static/js/main.6c5e9442.chunk.js",
+    "main.js.map": "/croods-auth/static/js/main.6c5e9442.chunk.js.map",
+    "runtime~main.js": "/croods-auth/static/js/runtime~main.ea3ad9c0.js",
+    "runtime~main.js.map": "/croods-auth/static/js/runtime~main.ea3ad9c0.js.map",
+    "static/js/2.63a38ef6.chunk.js": "/croods-auth/static/js/2.63a38ef6.chunk.js",
+    "static/js/2.63a38ef6.chunk.js.map": "/croods-auth/static/js/2.63a38ef6.chunk.js.map",
+    "index.html": "/croods-auth/index.html",
+    "precache-manifest.7edb95c24ca9c08a129e6fffb3b45a0f.js": "/croods-auth/precache-manifest.7edb95c24ca9c08a129e6fffb3b45a0f.js",
+    "service-worker.js": "/croods-auth/service-worker.js",
+    "static/css/main.a2b7b0b6.chunk.css.map": "/croods-auth/static/css/main.a2b7b0b6.chunk.css.map"
+  }
 }
