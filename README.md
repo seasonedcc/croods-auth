@@ -6,10 +6,10 @@ Bellow is a simple example of its usage with @reach/router:
 
 ```js
 import { CroodsProvider } from 'croods'
-import { Auth, authHeaders } from 'croods-auth'
+import { Auth, authHeaders, saveHeaders } from 'croods-auth'
 
 export default props => (
-  <CroodsProvider headers={authHeaders} baseUrl="https://foo.bar">
+  <CroodsProvider handleResponseHeaders={saveHeaders} headers={authHeaders} baseUrl="https://foo.bar">
     <Router>
       <Auth
         Component={SomeBlockedPage}

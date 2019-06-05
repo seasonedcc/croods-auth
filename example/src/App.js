@@ -28,6 +28,7 @@ export default () => {
         handleResponseHeaders={saveHeaders}
         headers={authHeaders}
         debugActions
+        debugRequests
         baseUrl={process.env.REACT_APP_API_URL}
       >
         <Router basepath={basePath}>
