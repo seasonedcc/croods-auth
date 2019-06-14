@@ -33,7 +33,7 @@ const Authorize = ({
 }
 
 Authorize.propTypes = {
-  Component: PropTypes.func.isRequired,
+  Component: PropTypes.elementType.isRequired,
   unauthorized: PropTypes.func.isRequired,
   unauthorize: PropTypes.func,
   authorizing: PropTypes.node,
