@@ -22,7 +22,7 @@
     "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
-    "croods": "1.x",
+    "croods": "^1.0.9",
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
@@ -52,7 +52,7 @@
     "dist"
   ],
   "dependencies": {
-    "croods": "1.0.5",
+    "croods": "1.0.9",
     "lodash": "^4.17.11",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",

@@ -2548,9 +2548,9 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-croods@1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/croods/-/croods-1.0.5.tgz#298e123c9c402b05d074daee6ed758c4f3b78421"
+croods@1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/croods/-/croods-1.0.9.tgz#307cfa2664be7346d080a5cb431cacb6ddcd00bf"
   dependencies:
     "@babel/runtime" "^7.4.5"
     axios "^0.19.0"
