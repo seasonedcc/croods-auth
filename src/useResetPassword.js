@@ -1,6 +1,7 @@
 import { useCroods } from 'croods'
 import { useFormState } from 'react-use-form-state'
 import getBaseOpts from './getBaseOpts'
+import useOnUnmount from './useOnUnmount'
 import {
   commonFields,
   getFieldError,
@@ -14,7 +15,12 @@ export default (options = {}) => {
   const { location = window.location, tokenKey = DEFAULT_KEY } = options
   const opts = getBaseOpts(options, 'resetPassword')
   const [formState, fields] = useFormState()
-  const [{ saving: reseting, saveError: error }, { save }] = useCroods(opts)
+  const [
+    { saving: reseting, saveError: error },
+    { save, resetState },
+  ] = useCroods(opts)
+
+  useOnUnmount(resetState)
 
   const isFormValid = isValidForm(formState)
 

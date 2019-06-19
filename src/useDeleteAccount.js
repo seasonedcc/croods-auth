@@ -2,13 +2,14 @@ import { useCroods } from 'croods'
 import getBaseOpts from './getBaseOpts'
 import { clearHeaders } from './persistHeaders'
 import useMounted from './useMounted'
+import useOnUnmount from './useOnUnmount'
 
 export default (options = {}) => {
   const opts = getBaseOpts(options, 'deleteAccount')
   const mounted = useMounted()
   const [
     { info: currentUser, destroying: deleting, destroyError: error },
-    { destroy, setInfo },
+    { destroy, setInfo, resetState },
   ] = useCroods({
     ...opts,
     afterSuccess: response => {
@@ -17,6 +18,8 @@ export default (options = {}) => {
       mounted && setInfo(null)
     },
   })
+
+  useOnUnmount(resetState)
 
   return [
     { currentUser, deleting, error },
