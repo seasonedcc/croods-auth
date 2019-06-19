@@ -1,6 +1,7 @@
 import { useCroods } from 'croods'
 import { useFormState } from 'react-use-form-state'
 import getBaseOpts from './getBaseOpts'
+import useOnUnmount from './useOnUnmount'
 import { saveHeaders } from './persistHeaders'
 import {
   commonFields,
@@ -14,7 +15,7 @@ export default (options = {}) => {
   const opts = getBaseOpts(options, 'signUp')
   const [
     { saving: signingUp, saveError: error },
-    { save, setInfo },
+    { save, setInfo, resetState },
   ] = useCroods({
     ...opts,
     afterSuccess: response => {
@@ -22,6 +23,8 @@ export default (options = {}) => {
       opts.afterSuccess && opts.afterSuccess(response)
     },
   })
+
+  useOnUnmount(resetState)
 
   const isFormValid = isValidForm(formState)
 

@@ -19,7 +19,7 @@ export const confirmation = (name, message = `Must be equal to ${name}`) => (
   return undefined
 }
 
-export const presence = (message = 'Field must not be empty') => value =>
+export const presence = (message = 'Is required') => value =>
   value ? undefined : message
 
 export const email = (message = 'Invalid email') => value =>
@@ -27,7 +27,7 @@ export const email = (message = 'Invalid email') => value =>
 
 export const minLength = (
   chars,
-  message = `This field should have min ${chars} characters`,
+  message = `Minimum ${chars} characters`,
 ) => value => (value && value.trim().length < chars ? message : undefined)
 
 export const getFieldError = formState => name =>
