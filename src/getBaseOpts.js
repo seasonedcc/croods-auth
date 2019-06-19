@@ -8,8 +8,19 @@ const methodPaths = {
   resetPassword: 'auth/password',
 }
 
+const methodStateId = {
+  deleteAccount: 'delete',
+  editProfile: 'edit',
+  signIn: 'signIn',
+  signOut: 'signOut',
+  signUp: 'signUp',
+  forgotPassword: 'forgot',
+  resetPassword: 'reset',
+}
+
 export default (options, method) => ({
   name: 'auth',
+  stateId: get(methodStateId, method),
   path: get(methodPaths, method, 'auth'),
   parseResponse: ({ data }) => data.data,
   ...options,
