@@ -20,7 +20,7 @@ export default (options = {}) => {
     { save, resetState },
   ] = useCroods(opts)
 
-  useOnUnmount(resetState)
+  useOnUnmount(resetState, reseting || error)
 
   const isFormValid = isValidForm(formState)
 

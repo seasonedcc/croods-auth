@@ -19,10 +19,7 @@ export default (options = {}) => {
     },
   })
 
-  useOnUnmount(resetState)
+  useOnUnmount(resetState, deleting || error)
 
-  return [
-    { currentUser, deleting, error },
-    destroy({ id: currentUser && currentUser.id }),
-  ]
+  return [{ deleting, error }, destroy({ id: currentUser && currentUser.id })]
 }

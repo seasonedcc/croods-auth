@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
 
-export default callback => {
-  useEffect(() => callback, [])
+export default (callback, condition) => {
+  useEffect(() => (condition ? callback : () => null), [])
 }
