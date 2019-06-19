@@ -22,6 +22,7 @@ export default (options, method) => ({
   name: 'auth',
   stateId: get(methodStateId, method),
   path: get(methodPaths, method, 'auth'),
+  updateRootInfo: true,
   parseResponse: ({ data }) => data.data,
   ...options,
 })
