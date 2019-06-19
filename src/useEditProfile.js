@@ -18,7 +18,7 @@ export default (options, currentUserOptions) => {
   const isFormValid = isValidForm(formState)
 
   useEffect(() => {
-    setInfo()
+    setInfo(currentUser)
   }, [])
   useOnUnmount(resetState)
 
