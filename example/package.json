@@ -6,15 +6,15 @@
   "private": true,
   "dependencies": {
     "@reach/router": "^1.2.1",
-    "croods": "^1.2.3",
-    "croods-auth": "https://github.com/SeasonedSoftware/croods-auth#development",
+    "croods": "link:../node_modules/croods",
+    "croods-auth": "link:..",
     "lodash": "^4.17.14",
     "prop-types": "^15.7.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "react": "link:../node_modules/react",
+    "react-dom": "link:../node_modules/react-dom",
     "react-scripts": "^3.0.1",
     "react-use-form-state": "^0.10.4",
-    "seasoned-components": "^0.1.0"
+    "seasoned-components": "^0.1.3"
   },
   "scripts": {
     "start": "react-scripts start",
