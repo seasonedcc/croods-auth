@@ -2,16 +2,13 @@ import get from 'lodash/get'
 import compact from 'lodash/compact'
 import head from 'lodash/head'
 import objValues from 'lodash/values'
+import { FormState } from './typeDeclarations'
+import { Inputs } from 'react-use-form-state'
 
 // eslint-disable-next-line
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
 type Validator = (a: string, b?: object[]) => undefined | string
-interface FormState {
-  touched: any
-  values: any
-  errors: any
-}
 
 export const validate = (validators: Validator[]): Validator => (
   value,
@@ -45,11 +42,10 @@ export const getFieldError = (formState: FormState) => (
 ): string | undefined =>
   get(formState, `touched.${name}`) && get(formState, `errors.${name}`)
 
-export const getFieldProps = (fields: any[], formState: FormState) => (
-  type: string,
-  name: string,
-  validators: Validator[] = [],
-) => {
+export const getFieldProps = (
+  fields: Inputs<any, string | number | symbol>,
+  formState: FormState,
+) => (type: string, name: string, validators: Validator[] = []) => {
   const fieldError = getFieldError(formState)
   return {
     ...fields[type]({ name, validate: validate(validators) }),

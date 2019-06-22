@@ -1,22 +1,33 @@
 import { useCroods } from 'croods'
-import { ActionOptions } from 'croods/dist/types/typeDeclarations'
+import {
+  ActionOptions,
+  InstanceOptions,
+} from 'croods/dist/types/typeDeclarations'
 import getBaseOpts from './getBaseOpts'
 import { clearHeaders } from './headersHelpers'
 import { useMounted, useOnUnmount } from './hooks'
+import { AxiosResponse } from 'axios'
+import { SignOutState } from './typeDeclarations'
 
-export default (options: ActionOptions = {}): [object, (Function) => void] => {
-  const opts = { ...getBaseOpts(options, 'signOut'), operation: 'info' }
+function useSignOut(
+  options: ActionOptions = {},
+): [SignOutState, (t: Function) => void] {
+  const afterSuccess = (response: AxiosResponse) => {
+    clearHeaders(opts)
+    opts.afterSuccess && opts.afterSuccess(response)
+  }
+
+  const opts = {
+    ...getBaseOpts(options, 'signOut'),
+    operation: 'info',
+    afterSuccess,
+  }
   const mounted = useMounted()
+
   const [
     { destroying: signingOut, destroyError: error },
     { destroy, setInfo, resetState },
-  ] = useCroods({
-    ...opts,
-    afterSuccess: response => {
-      clearHeaders(opts)
-      opts.afterSuccess && opts.afterSuccess(response)
-    },
-  })
+  ] = useCroods(opts as InstanceOptions)
 
   useOnUnmount(resetState)
 
@@ -29,3 +40,5 @@ export default (options: ActionOptions = {}): [object, (Function) => void] => {
     },
   ]
 }
+
+export default useSignOut

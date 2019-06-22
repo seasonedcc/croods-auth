@@ -4,36 +4,45 @@ import getBaseOpts from './getBaseOpts'
 import { useOnUnmount } from './hooks'
 import { saveHeaders } from './headersHelpers'
 import {
+  ActionOptions,
+  InstanceOptions,
+} from 'croods/dist/types/typeDeclarations'
+import { AxiosResponse } from 'axios'
+import { SignInState } from './typeDeclarations'
+import {
   commonFields,
   getFieldError,
   getFieldProps,
   isValidForm,
 } from './formHelpers'
 
-export default (options = {}) => {
+function useSignIn(
+  options: ActionOptions = {},
+): [SignInState, (a: object) => Promise<void>] {
   const [formState, fields] = useFormState()
-  const opts = getBaseOpts(options, 'signIn')
+
+  const afterSuccess = (response: AxiosResponse) => {
+    saveHeaders(response, opts)
+    opts.afterSuccess && opts.afterSuccess(response)
+  }
+
+  const opts = { ...getBaseOpts(options, 'signIn'), afterSuccess }
+
   const [
     { saving: signingIn, saveError: error },
     { save, setInfo, resetState },
-  ] = useCroods({
-    ...opts,
-    afterSuccess: response => {
-      saveHeaders(response, opts)
-      opts.afterSuccess && opts.afterSuccess(response)
-    },
-  })
+  ] = useCroods(opts as InstanceOptions)
 
   useOnUnmount(resetState)
 
   const isFormValid = isValidForm(formState)
 
   const signIn = async data => {
-    const saved = await save()(data)
-    saved && setInfo(saved)
+    const saved = await save({})(data)
+    saved && setInfo(saved, false)
   }
 
-  const onSubmit = event => {
+  const onSubmit = (event: Event) => {
     event && event.preventDefault && event.preventDefault()
     return isFormValid ? signIn(formState.values) : undefined
   }
@@ -44,8 +53,8 @@ export default (options = {}) => {
   return [
     {
       fields,
-      emailProps: fieldProps(...commonFields.email),
-      passwordProps: fieldProps(...commonFields.password),
+      emailProps: fieldProps.apply(null, commonFields.email),
+      passwordProps: fieldProps.apply(null, commonFields.password),
       formProps: { onSubmit },
       fieldProps,
       fieldError,
@@ -57,3 +66,5 @@ export default (options = {}) => {
     signIn,
   ]
 }
+
+export default useSignIn

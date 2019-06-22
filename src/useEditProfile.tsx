@@ -5,30 +5,38 @@ import getBaseOpts from './getBaseOpts'
 import useCurrentUser from './useCurrentUser'
 import { useOnUnmount } from './hooks'
 import { getFieldError, getFieldProps, isValidForm } from './formHelpers'
+import {
+  ActionOptions,
+  InstanceOptions,
+} from 'croods/dist/types/typeDeclarations'
+import { EditProfileState } from './typeDeclarations'
 
-export default (options, currentUserOptions) => {
+function useEditProfile(
+  options: ActionOptions,
+  currentUserOptions: ActionOptions,
+): [EditProfileState, (t: object) => Promise<any>] {
   const opts = getBaseOpts(options, 'editProfile')
   const [{ currentUser }, setCurrentUser] = useCurrentUser(currentUserOptions)
   const [formState, fields] = useFormState(currentUser)
   const [
     { saving, saveError: error },
     { save, setInfo, resetState },
-  ] = useCroods(opts)
+  ] = useCroods(opts as InstanceOptions)
 
   const isFormValid = isValidForm(formState)
 
   useEffect(() => {
-    setInfo(currentUser)
+    setInfo(currentUser, false)
   }, [])
   useOnUnmount(resetState)
 
-  const saveData = async data => {
+  const saveData = async (data: any) => {
     const user = await save({ method: 'PUT' })(data)
     if (user) setCurrentUser(user)
     return user
   }
 
-  const onSubmit = event => {
+  const onSubmit = (event: Event) => {
     event && event.preventDefault && event.preventDefault()
     return isFormValid ? saveData(formState.values) : undefined
   }
@@ -51,3 +59,5 @@ export default (options, currentUserOptions) => {
     saveData,
   ]
 }
+
+export default useEditProfile

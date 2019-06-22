@@ -1,4 +1,5 @@
 import { ActionOptions } from 'croods/dist/types/typeDeclarations'
+import { Inputs } from 'react-use-form-state'
 
 export interface Headers {
   accessToken?: string
@@ -23,4 +24,64 @@ export interface HeadersOptions extends ActionOptions {
     removeItem(a: string): void
   }
   storageKey?: string
+}
+
+export interface FormState {
+  touched: any
+  values: any
+  errors: any
+}
+
+export interface SignOutState {
+  signingOut: boolean
+  error?: string
+}
+
+export interface DeleteAccountState {
+  deleting: boolean
+  error?: string
+}
+
+export interface CurrentUserState {
+  currentUser: any
+  validating: boolean
+}
+
+export interface AuthFormState {
+  fields: Inputs<any, string | number | symbol>
+  formProps: { onSubmit: (e: Event) => Promise<void> }
+  fieldProps: any
+  fieldError: (t: string) => string
+  formState: FormState
+  isFormValid: boolean
+  error?: string
+}
+
+export interface SignInState extends AuthFormState {
+  emailProps: any
+  passwordProps: any
+  signingIn: boolean
+}
+
+export interface SignUpState extends AuthFormState {
+  emailProps: any
+  passwordProps: any
+  passwordConfirmationProps: any
+  signingUp: boolean
+}
+
+export interface ResetPassState extends AuthFormState {
+  passwordProps: any
+  passwordConfirmationProps: any
+  reseting: boolean
+}
+
+export interface EditProfileState extends AuthFormState {
+  currentUser: any
+  saving: boolean
+}
+
+export interface ForgotPassState extends AuthFormState {
+  emailProps: any
+  sending: boolean
 }

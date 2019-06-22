@@ -4,36 +4,43 @@ import getBaseOpts from './getBaseOpts'
 import { useOnUnmount } from './hooks'
 import { saveHeaders } from './headersHelpers'
 import {
+  ActionOptions,
+  InstanceOptions,
+} from 'croods/dist/types/typeDeclarations'
+import { AxiosResponse } from 'axios'
+import { SignUpState } from './typeDeclarations'
+import {
   commonFields,
   getFieldError,
   getFieldProps,
   isValidForm,
 } from './formHelpers'
 
-export default (options = {}) => {
+function useSignUp(
+  options: ActionOptions = {},
+): [SignUpState, (t: any) => Promise<any>] {
   const [formState, fields] = useFormState()
-  const opts = getBaseOpts(options, 'signUp')
+
+  const afterSuccess = (response: AxiosResponse) => {
+    saveHeaders(response, opts)
+    opts.afterSuccess && opts.afterSuccess(response)
+  }
+  const opts = { ...getBaseOpts(options, 'signUp'), afterSuccess }
   const [
     { saving: signingUp, saveError: error },
     { save, setInfo, resetState },
-  ] = useCroods({
-    ...opts,
-    afterSuccess: response => {
-      saveHeaders(response, opts)
-      opts.afterSuccess && opts.afterSuccess(response)
-    },
-  })
+  ] = useCroods(opts as InstanceOptions)
 
   useOnUnmount(resetState)
 
   const isFormValid = isValidForm(formState)
 
-  const signUp = async data => {
-    const saved = await save()(data)
-    saved && setInfo(saved)
+  const signUp = async (data: any) => {
+    const saved = await save({})(data)
+    saved && setInfo(saved, false)
   }
 
-  const onSubmit = event => {
+  const onSubmit = (event: Event) => {
     event && event.preventDefault && event.preventDefault()
     return isFormValid ? signUp(formState.values) : undefined
   }
@@ -44,10 +51,11 @@ export default (options = {}) => {
   return [
     {
       fields,
-      emailProps: fieldProps(...commonFields.email),
-      passwordProps: fieldProps(...commonFields.password),
-      passwordConfirmationProps: fieldProps(
-        ...commonFields.passwordConfirmation,
+      emailProps: fieldProps.apply(null, commonFields.email),
+      passwordProps: fieldProps.apply(null, commonFields.password),
+      passwordConfirmationProps: fieldProps.apply(
+        null,
+        commonFields.passwordConfirmation,
       ),
       formProps: { onSubmit },
       fieldProps,
@@ -60,3 +68,5 @@ export default (options = {}) => {
     signUp,
   ]
 }
+
+export default useSignUp

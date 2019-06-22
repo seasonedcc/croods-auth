@@ -2,6 +2,11 @@ import { useCroods } from 'croods'
 import { useFormState } from 'react-use-form-state'
 import getBaseOpts from './getBaseOpts'
 import { useOnUnmount } from './hooks'
+import { ForgotPassState } from './typeDeclarations'
+import {
+  ActionOptions,
+  InstanceOptions,
+} from 'croods/dist/types/typeDeclarations'
 import {
   commonFields,
   getFieldError,
@@ -9,24 +14,30 @@ import {
   isValidForm,
 } from './formHelpers'
 
-export default (options = {}) => {
+interface ForgotOptions extends ActionOptions {
+  redirectUrl?: string
+}
+
+function useForgotPassword(
+  options: ForgotOptions = {},
+): [ForgotPassState, (t: any) => Promise<any>] {
   const opts = getBaseOpts(options, 'forgotPassword')
   const [formState, fields] = useFormState()
   const [
     { saving: sending, saveError: error },
     { save, resetState },
-  ] = useCroods(opts)
+  ] = useCroods(opts as InstanceOptions)
 
-  useOnUnmount(resetState, sending || error)
+  useOnUnmount(resetState, !!(sending || error))
 
   const isFormValid = isValidForm(formState)
 
-  const send = data => {
+  const send = (data: any) => {
     const redirectUrl = options.redirectUrl || '/'
-    return save()({ redirectUrl, ...data })
+    return save({})({ redirectUrl, ...data })
   }
 
-  const onSubmit = event => {
+  const onSubmit = (event: Event) => {
     event && event.preventDefault && event.preventDefault()
     return isFormValid ? send(formState.values) : undefined
   }
@@ -38,7 +49,7 @@ export default (options = {}) => {
     {
       fields,
       formProps: { onSubmit },
-      emailProps: fieldProps(...commonFields.email),
+      emailProps: fieldProps.apply(null, commonFields.email),
       fieldProps,
       fieldError,
       formState,
@@ -49,3 +60,5 @@ export default (options = {}) => {
     send,
   ]
 }
+
+export default useForgotPassword
