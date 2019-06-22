@@ -1,9 +1,18 @@
 import get from 'lodash/get'
 import isFunction from 'lodash/isFunction'
+import { AxiosResponse } from 'axios'
+import { HeadersOptions, Headers, ParsedHeaders } from './typeDeclarations'
 
 const KEY = 'authCredentials'
 
-export const saveHeaders = (response, options) => {
+export function authHeaders({ storage, storageKey }: HeadersOptions = {}) {
+  return getParsedHeaders({ storage, storageKey })
+}
+
+export function saveHeaders(
+  response: AxiosResponse,
+  options: HeadersOptions,
+): void {
   const { storage = localStorage, storageKey = KEY } = options || {}
   if (isFunction(storage.setItem)) {
     const credentials = {
@@ -20,12 +29,12 @@ export const saveHeaders = (response, options) => {
   }
 }
 
-export const clearHeaders = options => {
+export function clearHeaders(options: HeadersOptions): void {
   const { storage = localStorage, storageKey = KEY } = options || {}
   storage.removeItem(storageKey)
 }
 
-export const getHeaders = options => {
+export function getHeaders(options: HeadersOptions): Headers {
   const { storage = localStorage, storageKey = KEY } = options || {}
   try {
     const credentials = JSON.parse(storage.getItem(storageKey))
@@ -35,7 +44,7 @@ export const getHeaders = options => {
   }
 }
 
-export const getParsedHeaders = options => {
+export function getParsedHeaders(options: HeadersOptions): ParsedHeaders {
   const credentials = getHeaders(options)
   return {
     'Access-Token': credentials.accessToken,

@@ -1,6 +1,5 @@
 import Authorize from './Auth'
-import { saveHeaders as sH } from './persistHeaders'
-import aH from './authHeaders'
+import { saveHeaders as sH, authHeaders as aH } from './headersHelpers'
 import uCU from './useCurrentUser'
 import uSI from './useSignIn'
 import uSU from './useSignUp'

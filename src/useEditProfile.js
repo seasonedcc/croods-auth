@@ -3,7 +3,7 @@ import { useCroods } from 'croods'
 import { useFormState } from 'react-use-form-state'
 import getBaseOpts from './getBaseOpts'
 import useCurrentUser from './useCurrentUser'
-import useOnUnmount from './useOnUnmount'
+import { useOnUnmount } from './hooks'
 import { getFieldError, getFieldProps, isValidForm } from './formHelpers'
 
 export default (options, currentUserOptions) => {

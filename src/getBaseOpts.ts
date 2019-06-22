@@ -1,4 +1,6 @@
 import get from 'lodash/get'
+import { ActionOptions } from 'croods/dist/types/typeDeclarations'
+import { AxiosResponse } from 'axios'
 
 const methodPaths = {
   currentUser: 'auth/validate_token',
@@ -18,11 +20,13 @@ const methodStateId = {
   resetPassword: 'reset',
 }
 
-export default (options, method) => ({
-  name: 'auth',
-  stateId: get(methodStateId, method),
-  path: get(methodPaths, method, 'auth'),
-  updateRootInfo: true,
-  parseResponse: ({ data }) => data.data,
-  ...options,
-})
+export default function(options: ActionOptions, method: string): ActionOptions {
+  return {
+    name: 'auth',
+    stateId: get(methodStateId, method),
+    path: get(methodPaths, method, 'auth'),
+    updateRootInfo: true,
+    parseResponse: ({ data }: AxiosResponse) => data.data,
+    ...options,
+  }
+}

@@ -1,10 +1,10 @@
 import { useCroods } from 'croods'
+import { ActionOptions } from 'croods/dist/types/typeDeclarations'
 import getBaseOpts from './getBaseOpts'
-import { clearHeaders } from './persistHeaders'
-import useMounted from './useMounted'
-import useOnUnmount from './useOnUnmount'
+import { clearHeaders } from './headersHelpers'
+import { useMounted, useOnUnmount } from './hooks'
 
-export default (options = {}) => {
+export default (options: ActionOptions = {}): [object, (Function) => void] => {
   const opts = { ...getBaseOpts(options, 'signOut'), operation: 'info' }
   const mounted = useMounted()
   const [
@@ -23,9 +23,9 @@ export default (options = {}) => {
   return [
     { signingOut, error },
     async callback => {
-      await destroy()()
+      await destroy({})()
       if (typeof callback === 'function') callback()
-      mounted && setInfo(null)
+      mounted && setInfo(null, false)
     },
   ]
 }

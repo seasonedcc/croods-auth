@@ -6,37 +6,49 @@ import objValues from 'lodash/values'
 // eslint-disable-next-line
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
-export const validate = validators => (value, values) =>
-  head(compact(validators.map(validator => validator(value, values))))
+type Validator = (a: string, b?: object[]) => undefined | string
+interface FormState {
+  touched: any
+  values: any
+  errors: any
+}
 
-export const confirmation = (name, message = `Must be equal to ${name}`) => (
+export const validate = (validators: Validator[]): Validator => (
   value,
   values,
-) => {
+) => head(compact(validators.map(validator => validator(value, values))))
+
+export const confirmation = (
+  name: string,
+  message = `Must be equal to ${name}`,
+): Validator => (value, values) => {
   if (value !== values[name]) {
     return message
   }
   return undefined
 }
 
-export const presence = (message = 'Is required') => value =>
+export const presence = (message = 'Is required'): Validator => value =>
   value ? undefined : message
 
-export const email = (message = 'Invalid email') => value =>
+export const email = (message = 'Invalid email'): Validator => value =>
   value && !EMAIL_REGEX.test(value) ? message : undefined
 
 export const minLength = (
-  chars,
+  chars: number,
   message = `Minimum ${chars} characters`,
-) => value => (value && value.trim().length < chars ? message : undefined)
+): Validator => value =>
+  value && value.trim().length < chars ? message : undefined
 
-export const getFieldError = formState => name =>
+export const getFieldError = (formState: FormState) => (
+  name: string,
+): string | undefined =>
   get(formState, `touched.${name}`) && get(formState, `errors.${name}`)
 
-export const getFieldProps = (fields, formState) => (
-  type,
-  name,
-  validators = [],
+export const getFieldProps = (fields: any[], formState: FormState) => (
+  type: string,
+  name: string,
+  validators: Validator[] = [],
 ) => {
   const fieldError = getFieldError(formState)
   return {
@@ -45,7 +57,8 @@ export const getFieldProps = (fields, formState) => (
   }
 }
 
-export const isValidForm = formState => !objValues(formState.errors).length
+export const isValidForm = (formState: FormState): boolean =>
+  !objValues(formState.errors).length
 
 export const commonFields = {
   email: ['email', 'email', [presence(), email()]],

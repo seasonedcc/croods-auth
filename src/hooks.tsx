@@ -1,6 +1,10 @@
 import { useEffect, useRef } from 'react'
 
-export default () => {
+export function useOnUnmount(callback: () => void, condition = true): void {
+  useEffect(() => (condition ? callback : () => {}), [])
+}
+
+export function useMounted(): boolean {
   const mountedRef = useRef(false)
   useEffect(() => {
     mountedRef.current = true

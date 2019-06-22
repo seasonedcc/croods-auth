@@ -1,7 +1,7 @@
 import { useEffect, useCallback } from 'react'
 import { useCroods } from 'croods'
 import getBaseOpts from './getBaseOpts'
-import { getHeaders } from './persistHeaders'
+import { getHeaders } from './headersHelpers'
 
 export default options => {
   const opts = getBaseOpts(

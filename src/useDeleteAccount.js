@@ -1,8 +1,7 @@
 import { useCroods } from 'croods'
 import getBaseOpts from './getBaseOpts'
-import { clearHeaders } from './persistHeaders'
-import useMounted from './useMounted'
-import useOnUnmount from './useOnUnmount'
+import { clearHeaders } from './headersHelpers'
+import { useMounted, useOnUnmount } from './hooks'
 
 export default (options = {}) => {
   const opts = getBaseOpts(options, 'deleteAccount')

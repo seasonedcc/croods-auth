@@ -3,7 +3,7 @@ import {
   saveHeaders,
   getHeaders,
   getParsedHeaders,
-} from '../persistHeaders'
+} from '../headersHelpers'
 
 afterEach(jest.clearAllMocks)
 
