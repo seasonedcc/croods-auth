@@ -13,9 +13,13 @@
     "npm": ">=5"
   },
   "scripts": {
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch",
     "test": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
-    "build": "rollup -c",
+    "build": "npm run build:types && npm run build:js",
+    "build:js": "rollup -c",
+    "build:types": "tsc --emitDeclarationOnly",
     "start": "rollup -c -w",
     "prepare": "yarn run build",
     "predeploy": "yarn build && cd example/ && yarn build && cd ../",
@@ -23,36 +27,39 @@
   },
   "peerDependencies": {
     "croods": "^1.2.3",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.14",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-use-form-state": "^0.10.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
-    "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.3.3",
+    "@types/lodash": "^4.14.136",
+    "@types/react": "^16.8.22",
     "croods": "1.2.3",
     "cross-env": "^5.2.0",
     "gh-pages": "^2.0.1",
+    "lodash": "^4.17.14",
+    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "^3.0.1",
-    "rollup": "^1.15.6",
-    "rollup-plugin-babel": "^4.3.2",
-    "rollup-plugin-commonjs": "^10.0.0",
+    "react-use-form-state": "^0.10.4",
+    "rollup": "^1.17.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.0.1",
     "rollup-plugin-json": "^4.0.0",
-    "rollup-plugin-node-resolve": "^5.0.3",
+    "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
-    "rollup-plugin-uglify": "^6.0.2"
+    "rollup-plugin-uglify": "^6.0.2",
+    "typescript": "^3.5.3"
   },
   "files": [
     "dist"
-  ],
-  "dependencies": {
-    "lodash": "^4.17.14",
-    "prop-types": "^15.7.2",
-    "react-use-form-state": "^0.10.4"
-  }
+  ]
 }

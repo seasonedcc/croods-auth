@@ -6,13 +6,12 @@ import babel from 'rollup-plugin-babel'
 import json from 'rollup-plugin-json'
 import pkg from './package.json'
 
-// const extensions = ['.js', '.jsx', '.ts', '.tsx']
-const extensions = ['.js', '.jsx']
+const extensions = ['.js', '.jsx', '.ts', '.tsx']
 
 const config = {
   input: './src/index.js',
   // Specify here external modules which you don't want to include in your bundle (for instance: 'lodash', 'moment' etc.)
-  external: ['react', 'react-dom', 'croods'],
+  external: ['react', 'react-dom', 'croods', 'lodash', 'react-use-form-state'],
   plugins: [
     // Allows node_modules resolution
     resolve({ extensions }),
