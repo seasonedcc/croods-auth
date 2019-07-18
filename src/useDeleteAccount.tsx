@@ -13,8 +13,8 @@ function useDeleteAccount(
   options: ActionOptions = {},
 ): [DeleteAccountState, (t?: object) => Promise<any>] {
   const afterSuccess = (response: AxiosResponse) => {
-    clearHeaders(opts)
-    opts.afterSuccess && opts.afterSuccess(response)
+    clearHeaders(options)
+    options.afterSuccess && options.afterSuccess(response)
     mounted && setInfo(null, false)
   }
   const opts = { ...getBaseOpts(options, 'deleteAccount'), afterSuccess }

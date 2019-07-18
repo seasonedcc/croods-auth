@@ -13,8 +13,8 @@ function useSignOut(
   options: ActionOptions = {},
 ): [SignOutState, (t: Function) => void] {
   const afterSuccess = (response: AxiosResponse) => {
-    clearHeaders(opts)
-    opts.afterSuccess && opts.afterSuccess(response)
+    clearHeaders(options)
+    options.afterSuccess && options.afterSuccess(response)
   }
 
   const opts = {

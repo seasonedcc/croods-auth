@@ -22,8 +22,8 @@ function useSignIn(
   const [formState, fields] = useFormState()
 
   const afterSuccess = (response: AxiosResponse) => {
-    saveHeaders(response, opts)
-    opts.afterSuccess && opts.afterSuccess(response)
+    saveHeaders(response, options)
+    options.afterSuccess && options.afterSuccess(response)
   }
 
   const opts = { ...getBaseOpts(options, 'signIn'), afterSuccess }

@@ -2,6 +2,14 @@
 
 Croods-auth is another layer of abstraction on top of Croods, providing you with a ready-to-use solution for user authentication and permission control.
 
+## Install
+
+```bash
+yarn add croods-auth croods react react-dom lodash react-use-form-state
+```
+
+## Usage
+
 Bellow is a simple example of its usage with @reach/router:
 
 ```js
