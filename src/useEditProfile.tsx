@@ -11,10 +11,14 @@ import {
 } from 'croods/dist/types/typeDeclarations'
 import { EditProfileState } from './typeDeclarations'
 
+interface SaveData {
+  (t: object): Promise<any>
+}
+
 function useEditProfile(
   options: ActionOptions,
   currentUserOptions: ActionOptions,
-): [EditProfileState, (t: object) => Promise<any>] {
+): [EditProfileState, SaveData] {
   const opts = getBaseOpts(options, 'editProfile')
   const [{ currentUser }, setCurrentUser] = useCurrentUser(currentUserOptions)
   const [formState, fields] = useFormState(currentUser)
