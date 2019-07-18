@@ -26,7 +26,7 @@
     "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
-    "croods": "^1.2.3",
+    "croods": "^2.0.0",
     "lodash": "^4.17.14",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
@@ -42,7 +42,7 @@
     "@types/axios": "^0.14.0",
     "@types/lodash": "^4.14.136",
     "@types/react": "^16.8.22",
-    "croods": "1.2.3",
+    "croods": "2.0.0",
     "cross-env": "^5.2.0",
     "gh-pages": "^2.0.1",
     "lodash": "^4.17.14",
