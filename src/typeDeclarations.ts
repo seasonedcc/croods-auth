@@ -85,3 +85,8 @@ export interface ForgotPassState extends AuthFormState {
   emailProps: any
   sending: boolean
 }
+
+export interface SignInProviderState {
+  signingIn: boolean,
+  error?: string
+}
