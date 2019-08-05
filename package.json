@@ -39,6 +39,7 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
+    "@seasonedsoftware/eslint-config": "^1.0.0",
     "@types/axios": "^0.14.0",
     "@types/lodash": "^4.14.136",
     "@types/react": "^16.8.22",
