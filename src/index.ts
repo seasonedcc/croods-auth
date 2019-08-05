@@ -8,6 +8,7 @@ import uDA from './useDeleteAccount'
 import uEP from './useEditProfile'
 import uFP from './useForgotPassword'
 import uRP from './useResetPassword'
+import uPA from './useProviderAuth'
 
 export const Auth = Authorize
 export const authHeaders = aH
@@ -20,6 +21,7 @@ export const useEditProfile = uEP
 export const useForgotPassword = uFP
 export const useResetPassword = uRP
 export const saveHeaders = sH
+export const useProviderAuth = uPA
 
 export default {
   Auth,
@@ -33,4 +35,5 @@ export default {
   useForgotPassword,
   useResetPassword,
   saveHeaders,
+  useProviderAuth,
 }
