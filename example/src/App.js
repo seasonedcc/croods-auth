@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 import { CroodsProvider } from 'croods'
 import { Auth, authHeaders, saveHeaders } from 'croods-auth'
 import { Router, navigate } from '@reach/router'
@@ -22,7 +22,7 @@ export default () => {
   }
 
   return (
-    <>
+    <Fragment>
       <Alert alert={alert} close={() => setAlert(null)} />
       <CroodsProvider
         handleResponseHeaders={saveHeaders}
@@ -61,6 +61,6 @@ export default () => {
           <ResetPassword path="/reset-password" />
         </Router>
       </CroodsProvider>
-    </>
+    </Fragment>
   )
 }
