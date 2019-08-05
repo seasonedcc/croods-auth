@@ -10,8 +10,6 @@ plugins:
     enabled: true
     config:
       config: ./.eslintrc.js
-  tslint:
-    enabled: true
   fixme:
     enabled: true
   nodesecurity:
