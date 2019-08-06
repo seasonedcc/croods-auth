@@ -1,11 +1,6 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/f37c434f6b6e73e2d050/maintainability)](https://codeclimate.com/github/SeasonedSoftware/croods-auth/maintainability)
-
 [![Test Coverage](https://api.codeclimate.com/v1/badges/f37c434f6b6e73e2d050/test_coverage)](https://codeclimate.com/github/SeasonedSoftware/croods-auth/test_coverage)
-
-[![CircleCI](https://circleci.com/gh/SeasonedSoftware/croods-auth.svg?style=svg)](https://circleci.com/gh/SeasonedSoftware/croods-auth)
-
-
-[![CircleCI](https://img.shields.io/bundlephobia/min/croods-auth)](https://img.shields.io/bundlephobia/min/croods-auth)
+![npm bundle size](https://img.shields.io/bundlephobia/min/croods-auth)
 
 # Croods-Auth
 
