@@ -37,7 +37,7 @@ export const minLength = (
   chars: number,
   message = `Minimum ${chars} characters`,
 ): Validator => value =>
-  value && value.trim().length < chars ? message : undefined
+    value && value.trim().length < chars ? message : undefined
 
 export const getFieldError = (formState: FormState) => (
   name: string,

@@ -32,7 +32,7 @@ function useCurrentUser(
     // eslint-disable-next-line
   }, [currentUser])
 
-  return [{ currentUser, validating: fetchingInfo }, actions.setInfo]
+  return [{ currentUser, validating: !!fetchingInfo }, actions.setInfo]
 }
 
 export default useCurrentUser
