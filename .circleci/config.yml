@@ -47,24 +47,6 @@ jobs:
             yarn test --ci --coverage --maxWorkers=2
             ./cc-test-reporter after-build --coverage-input-type lcov --exit-code $?
 
-  build_and_deploy:
-    executor: node
-    steps:
-      - checkout
-      - attach_workspace:
-          at: ./
-      - <<: *restore_cache
-      - <<: *install_node_modules
-      - run:
-          name: Build
-          command: yarn build
-      - run:
-          name: Install netlify-cli
-          command: sudo npm install -g --silent netlify-cli
-      - run:
-          name: Deploy to Netlify
-          command: netlify deploy --dir=./build -p
-
 workflows:
   version: 2
   test_and_deploy:
@@ -73,11 +55,4 @@ workflows:
           context: org-global
           filters:
             tags:
-              ignore: /.*/
-      - build_and_deploy:
-          context: org-global
-          filters:
-            tags:
-              only: /v[0-9]+/
-            branches:
               ignore: /.*/
