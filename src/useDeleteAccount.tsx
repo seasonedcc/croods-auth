@@ -28,7 +28,7 @@ function useDeleteAccount(
 
   const id = currentUser ? (currentUser as any).id : undefined
 
-  return [{ deleting, error }, destroy({ id })]
+  return [{ deleting: !!deleting, error }, destroy({ id })]
 }
 
 export default useDeleteAccount

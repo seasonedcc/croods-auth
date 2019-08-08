@@ -63,7 +63,7 @@ function useResetPassword(
       fieldError,
       isFormValid,
       formState,
-      reseting,
+      reseting: !!reseting,
       error,
     },
     reset,

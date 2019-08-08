@@ -27,12 +27,13 @@ function useSignOut(
   const [
     { destroying: signingOut, destroyError: error },
     { destroy, setInfo, resetState },
+    //@ts-ignore
   ] = useCroods(opts as InstanceOptions)
 
   useOnUnmount(resetState)
 
   return [
-    { signingOut, error },
+    { signingOut: !!signingOut, error },
     async callback => {
       await destroy({})()
       if (typeof callback === 'function') callback()

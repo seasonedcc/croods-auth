@@ -54,7 +54,7 @@ function useForgotPassword(
       fieldError,
       formState,
       isFormValid,
-      sending,
+      sending: !!sending,
       error,
     },
     send,

@@ -37,7 +37,7 @@ function useSignIn(
 
   const isFormValid = isValidForm(formState)
 
-  const signIn = async data => {
+  const signIn = async (data: any) => {
     const saved = await save({})(data)
     saved && setInfo(saved, false)
   }
@@ -60,7 +60,7 @@ function useSignIn(
       fieldError,
       formState,
       isFormValid,
-      signingIn,
+      signingIn: !!signingIn,
       error,
     },
     signIn,

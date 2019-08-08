@@ -34,12 +34,12 @@ export interface FormState {
 
 export interface SignOutState {
   signingOut: boolean
-  error?: string
+  error?: string | null
 }
 
 export interface DeleteAccountState {
   deleting: boolean
-  error?: string
+  error?: string | null
 }
 
 export interface CurrentUserState {
@@ -49,12 +49,12 @@ export interface CurrentUserState {
 
 export interface AuthFormState {
   fields: Inputs<any, string | number | symbol>
-  formProps: { onSubmit: (e: Event) => Promise<void> }
+  formProps: { onSubmit: (e: Event) => Promise<void> | undefined }
   fieldProps: any
-  fieldError: (t: string) => string
+  fieldError: (t: string) => string | undefined
   formState: FormState
   isFormValid: boolean
-  error?: string
+  error?: string | null
 }
 
 export interface SignInState extends AuthFormState {
@@ -88,5 +88,5 @@ export interface ForgotPassState extends AuthFormState {
 
 export interface SignInProviderState {
   signingIn: boolean,
-  error?: string
+  error?: string | null
 }

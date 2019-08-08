@@ -57,7 +57,7 @@ function useEditProfile(
       fieldError,
       formState,
       isFormValid,
-      saving,
+      saving: !!saving,
       error,
     },
     saveData,
