@@ -1,3 +1,4 @@
+//@ts-ignore
 import Authorize from './Auth'
 import { saveHeaders as sH, authHeaders as aH } from './headersHelpers'
 import uCU from './useCurrentUser'

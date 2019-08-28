@@ -37,6 +37,7 @@ export function clearHeaders(options: HeadersOptions): void {
 export function getHeaders(options: HeadersOptions): Headers {
   const { storage = localStorage, storageKey = KEY } = options || {}
   try {
+    //@ts-ignore
     const credentials = JSON.parse(storage.getItem(storageKey))
     return credentials || {}
   } catch (error) {

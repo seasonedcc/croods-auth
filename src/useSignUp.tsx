@@ -62,7 +62,7 @@ function useSignUp(
       fieldError,
       formState,
       isFormValid,
-      signingUp,
+      signingUp: !!signingUp,
       error,
     },
     signUp,

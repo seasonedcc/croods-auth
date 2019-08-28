@@ -12,6 +12,10 @@ interface Validator {
   (a: string, b?: object[]): undefined | string
 }
 
+interface CommonFieldsInterface {
+  [name: string]: [string, string, Validator[]]
+}
+
 export const validate = (validators: Validator[]): Validator => (
   value,
   values,
@@ -21,7 +25,7 @@ export const confirmation = (
   name: string,
   message = `Must be equal to ${name}`,
 ): Validator => (value, values) => {
-  if (value !== values[name]) {
+  if (value !== get(values, name)) {
     return message
   }
   return undefined
@@ -50,7 +54,7 @@ export const getFieldProps = (
 ) => (type: string, name: string, validators: Validator[] = []) => {
   const fieldError = getFieldError(formState)
   return {
-    ...fields[type]({ name, validate: validate(validators) }),
+    ...get(fields, type)({ name, validate: validate(validators) }),
     error: fieldError(name),
   }
 }
@@ -58,7 +62,7 @@ export const getFieldProps = (
 export const isValidForm = (formState: FormState): boolean =>
   !objValues(formState.errors).length
 
-export const commonFields = {
+export const commonFields: CommonFieldsInterface = {
   email: ['email', 'email', [presence(), email()]],
   password: ['password', 'password', [presence(), minLength(8)]],
   passwordConfirmation: [
