@@ -2966,10 +2966,10 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-croods@2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/croods/-/croods-2.0.1.tgz#1f364e48334e044df5205786684da7f411e31381"
-  integrity sha512-hE7vrOICmVEd1VGo9Pa/bKypigsiJKG2+dspirV+lq1BQha6xNEkAHBjMZh3qn6TrUYWCLZewzBjsRpb4mad0A==
+croods@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/croods/-/croods-2.1.0.tgz#ed7e5d2e1bdaf2b4a6ee0a18774125af1b218771"
+  integrity sha512-dfgUF3T+ANvW319p9wcOtkL4Qr15HfmK0DAgUhUCXpGel9wnEHxDfV/YoRzpsJtufx6/G50CWokm2vGTMDY0VA==
   dependencies:
     "@babel/runtime" "^7.5.5"
     lodash-humps "^3.1.5"
