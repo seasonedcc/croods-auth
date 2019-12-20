@@ -30,7 +30,7 @@
     "postrelease": "npm publish && git push --tags && git push"
   },
   "peerDependencies": {
-    "croods": "2.1.0",
+    "croods": "2.1.3",
     "lodash": "^4.17.14",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
@@ -43,7 +43,7 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
-    "@seasonedsoftware/eslint-config": "^1.0.0",
+    "@seasonedsoftware/eslint-config": "^2.1.0",
     "@types/axios": "^0.14.0",
     "@types/lodash": "^4.14.136",
     "@types/react": "^16.8.22",
