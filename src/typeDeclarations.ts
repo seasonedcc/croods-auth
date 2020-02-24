@@ -30,6 +30,7 @@ export interface FormState {
   touched: any
   values: any
   errors: any
+  setFieldError?: Function
 }
 
 export interface SignOutState {
