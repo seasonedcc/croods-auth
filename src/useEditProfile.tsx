@@ -9,7 +9,7 @@ import {
   ActionOptions,
   InstanceOptions,
 } from 'croods/dist/types/typeDeclarations'
-import { EditProfileState, FormState } from './typeDeclarations'
+import { EditProfileState } from './typeDeclarations'
 
 interface SaveData {
   (t: object): Promise<any>

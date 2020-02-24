@@ -8,7 +8,7 @@ import {
   InstanceOptions,
 } from 'croods/dist/types/typeDeclarations'
 import { AxiosResponse } from 'axios'
-import { SignUpState, FormState, } from './typeDeclarations'
+import { SignUpState } from './typeDeclarations'
 import {
   commonFields,
   getFieldError,
