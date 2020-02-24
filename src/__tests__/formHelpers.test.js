@@ -138,9 +138,6 @@ describe('getFieldError', () => {
   describe('when there is an error and the field was touched', () => {
     it('returns the error', () => {
       const formState = {
-        touched: {
-          foobar: true,
-        },
         errors: {
           foobar: 'Fooobar error',
         },
@@ -151,28 +148,9 @@ describe('getFieldError', () => {
     })
   })
 
-  describe('when there is an error and the field was NOT touched', () => {
-    it('returns false', () => {
-      const formState = {
-        touched: {
-          foobar: false,
-        },
-        errors: {
-          foobar: 'Fooobar error',
-        },
-      }
-      const fieldName = 'foobar'
-
-      expect(getFieldError(formState)(fieldName)).toBeFalsy()
-    })
-  })
-
   describe('when there is NOT an error', () => {
     it('returns false', () => {
       const formState = {
-        touched: {
-          foobar: true,
-        },
         errors: {
           foobar: undefined,
         },

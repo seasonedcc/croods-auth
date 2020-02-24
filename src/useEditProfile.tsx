@@ -4,12 +4,12 @@ import { useFormState } from 'react-use-form-state'
 import getBaseOpts from './getBaseOpts'
 import useCurrentUser from './useCurrentUser'
 import { useOnUnmount } from './hooks'
-import { getFieldError, getFieldProps, isValidForm } from './formHelpers'
+import { getFieldError, getFieldProps, isValidForm, additionalCheckerPasswordConfirmation } from './formHelpers'
 import {
   ActionOptions,
   InstanceOptions,
 } from 'croods/dist/types/typeDeclarations'
-import { EditProfileState } from './typeDeclarations'
+import { EditProfileState, FormState } from './typeDeclarations'
 
 interface SaveData {
   (t: object): Promise<any>
@@ -27,7 +27,7 @@ function useEditProfile(
     { save, setInfo, resetState },
   ] = useCroods(opts as InstanceOptions)
 
-  const isFormValid = isValidForm(formState)
+  const isFormValid = isValidForm(formState, additionalCheckerPasswordConfirmation)
 
   useEffect(() => {
     setInfo(currentUser, false)

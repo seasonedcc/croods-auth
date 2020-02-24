@@ -8,12 +8,13 @@ import {
   InstanceOptions,
 } from 'croods/dist/types/typeDeclarations'
 import { AxiosResponse } from 'axios'
-import { SignUpState } from './typeDeclarations'
+import { SignUpState, FormState, } from './typeDeclarations'
 import {
   commonFields,
   getFieldError,
   getFieldProps,
   isValidForm,
+  additionalCheckerPasswordConfirmation,
 } from './formHelpers'
 
 function useSignUp(
@@ -33,7 +34,7 @@ function useSignUp(
 
   useOnUnmount(resetState)
 
-  const isFormValid = isValidForm(formState)
+  const isFormValid = isValidForm(formState, additionalCheckerPasswordConfirmation)
 
   const signUp = async (data: any) => {
     const saved = await save({})(data)
