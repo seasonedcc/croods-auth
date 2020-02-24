@@ -13,7 +13,7 @@
     "react": "link:../node_modules/react",
     "react-dom": "link:../node_modules/react-dom",
     "react-scripts": "^3.3.0",
-    "react-use-form-state": "^0.10.4",
+    "react-use-form-state": "^0.12.1",
     "seasoned-components": "^0.1.3"
   },
   "scripts": {
