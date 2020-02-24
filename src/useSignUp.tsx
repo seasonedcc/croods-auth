@@ -14,6 +14,7 @@ import {
   getFieldError,
   getFieldProps,
   isValidForm,
+  additionalCheckerPasswordConfirmation,
 } from './formHelpers'
 
 function useSignUp(
@@ -33,7 +34,7 @@ function useSignUp(
 
   useOnUnmount(resetState)
 
-  const isFormValid = isValidForm(formState)
+  const isFormValid = isValidForm(formState, additionalCheckerPasswordConfirmation)
 
   const signUp = async (data: any) => {
     const saved = await save({})(data)

@@ -46,7 +46,7 @@ export const minLength = (
 export const getFieldError = (formState: FormState) => (
   name: string,
 ): string | undefined =>
-  get(formState, `touched.${name}`) && get(formState, `errors.${name}`)
+  get(formState, `errors.${name}`)
 
 export const getFieldProps = (
   fields: Inputs<any, string | number | symbol>,
@@ -59,8 +59,8 @@ export const getFieldProps = (
   }
 }
 
-export const isValidForm = (formState: FormState): boolean =>
-  !objValues(formState.errors).length
+export const isValidForm = (formState: FormState, additionalCheck: Function = () => true): boolean =>
+  !objValues(formState.errors).length && additionalCheck(formState)
 
 export const commonFields: CommonFieldsInterface = {
   email: ['email', 'email', [presence(), email()]],
@@ -70,4 +70,12 @@ export const commonFields: CommonFieldsInterface = {
     'passwordConfirmation',
     [confirmation('password', 'Password fields must be equal')],
   ],
+}
+
+export const additionalCheckerPasswordConfirmation = (formState: FormState): boolean => {
+  if (formState.values.password === formState.values.passwordConfirmation)
+    return true
+
+  formState.setFieldError && formState.setFieldError('passwordConfirmation', 'Password fields must be equal')
+  return false
 }

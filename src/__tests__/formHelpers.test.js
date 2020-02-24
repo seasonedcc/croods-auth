@@ -6,6 +6,7 @@ import {
   email,
   minLength,
   getFieldError,
+  additionalCheckerPasswordConfirmation,
 } from '../formHelpers'
 
 describe('isValidForm', () => {
@@ -138,9 +139,6 @@ describe('getFieldError', () => {
   describe('when there is an error and the field was touched', () => {
     it('returns the error', () => {
       const formState = {
-        touched: {
-          foobar: true,
-        },
         errors: {
           foobar: 'Fooobar error',
         },
@@ -151,28 +149,9 @@ describe('getFieldError', () => {
     })
   })
 
-  describe('when there is an error and the field was NOT touched', () => {
-    it('returns false', () => {
-      const formState = {
-        touched: {
-          foobar: false,
-        },
-        errors: {
-          foobar: 'Fooobar error',
-        },
-      }
-      const fieldName = 'foobar'
-
-      expect(getFieldError(formState)(fieldName)).toBeFalsy()
-    })
-  })
-
   describe('when there is NOT an error', () => {
     it('returns false', () => {
       const formState = {
-        touched: {
-          foobar: true,
-        },
         errors: {
           foobar: undefined,
         },
@@ -181,5 +160,38 @@ describe('getFieldError', () => {
 
       expect(getFieldError(formState)(fieldName)).toBeFalsy()
     })
+  })
+})
+
+describe('additionalCheckerPasswordConfirmation', () => {
+  it('calls setFieldError when password fields are different', () => {
+    const formState = {
+      touched: {},
+      values: {
+        password: '123',
+        passwordConfirmation: '12',
+      },
+      setFieldError: jest.fn(),
+    }
+
+    const result = additionalCheckerPasswordConfirmation(formState)
+    expect(result).toBeFalsy()
+    expect(formState.setFieldError).toHaveBeenCalled()
+  })
+
+  it('DOES NOT call setFieldError when password fields are equal', () => {
+    const formState = {
+      touched: {},
+      values: {
+        password: '123',
+        passwordConfirmation: '123',
+      },
+      setFieldError: jest.fn(),
+    }
+
+    const result = additionalCheckerPasswordConfirmation(formState)
+
+    expect(result).toBeTruthy()
+    expect(formState.setFieldError).not.toHaveBeenCalled()
   })
 })
