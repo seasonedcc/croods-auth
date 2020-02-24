@@ -6,6 +6,7 @@ import {
   email,
   minLength,
   getFieldError,
+  additionalCheckerPasswordConfirmation,
 } from '../formHelpers'
 
 describe('isValidForm', () => {
@@ -159,5 +160,38 @@ describe('getFieldError', () => {
 
       expect(getFieldError(formState)(fieldName)).toBeFalsy()
     })
+  })
+})
+
+describe('additionalCheckerPasswordConfirmation', () => {
+  it('calls setFieldError when password fields are different', () => {
+    const formState = {
+      touched: {},
+      values: {
+        password: '123',
+        passwordConfirmation: '12',
+      },
+      setFieldError: jest.fn(),
+    }
+
+    const result = additionalCheckerPasswordConfirmation(formState)
+    expect(result).toBeFalsy()
+    expect(formState.setFieldError).toHaveBeenCalled()
+  })
+
+  it('DOES NOT call setFieldError when password fields are equal', () => {
+    const formState = {
+      touched: {},
+      values: {
+        password: '123',
+        passwordConfirmation: '123',
+      },
+      setFieldError: jest.fn(),
+    }
+
+    const result = additionalCheckerPasswordConfirmation(formState)
+
+    expect(result).toBeTruthy()
+    expect(formState.setFieldError).not.toHaveBeenCalled()
   })
 })
