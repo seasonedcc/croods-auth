@@ -16,7 +16,7 @@ function useCurrentUser(
     'currentUser',
   ) as InstanceOptions
 
-  const [{ info: currentUser, fetchingInfo }, actions] = useCroods(opts)
+  const [{ info: currentUser, fetchingInfo, infoError }, actions] = useCroods(opts)
 
   const initFetch = useCallback(() => {
     const headers = getHeaders(opts)
@@ -32,7 +32,7 @@ function useCurrentUser(
     // eslint-disable-next-line
   }, [currentUser])
 
-  return [{ currentUser, validating: !!fetchingInfo }, actions.setInfo]
+  return [{ currentUser, validating: !!fetchingInfo, error: infoError }, actions.setInfo]
 }
 
 export default useCurrentUser
