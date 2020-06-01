@@ -46,6 +46,7 @@ export interface DeleteAccountState {
 export interface CurrentUserState {
   currentUser: any
   validating: boolean
+  error?: string | null
 }
 
 export interface AuthFormState {
