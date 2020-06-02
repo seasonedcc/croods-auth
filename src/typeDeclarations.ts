@@ -1,6 +1,8 @@
 import { ActionOptions } from 'croods/dist/types/typeDeclarations'
 import { Inputs } from 'react-use-form-state'
 
+export type UserStatus = 'pending' | 'visitor' | 'logged'
+
 export interface Headers {
   accessToken?: string
   client?: string
@@ -45,6 +47,7 @@ export interface DeleteAccountState {
 
 export interface CurrentUserState {
   currentUser: any
+  status: UserStatus
   validating: boolean
   error?: string | null
 }
@@ -89,6 +92,6 @@ export interface ForgotPassState extends AuthFormState {
 }
 
 export interface SignInProviderState {
-  signingIn: boolean,
+  signingIn: boolean
   error?: string | null
 }
