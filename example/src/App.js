@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from 'react'
 import { CroodsProvider } from 'croods'
-import { Auth, authHeaders, saveHeaders } from 'croods-auth'
+import { Auth, authHeaders, saveHeaders, useCurrentUser } from 'croods-auth'
 import { Router, navigate } from '@reach/router'
 
 import basePath from './basePath'
@@ -21,9 +21,12 @@ export default () => {
     setAlert({ message, type: 'danger' })
   }
 
+  const [{ status }] = useCurrentUser()
+
   return (
     <Fragment>
       <Alert alert={alert} close={() => setAlert(null)} />
+      {status}
       <CroodsProvider
         handleResponseHeaders={saveHeaders}
         headers={authHeaders}
