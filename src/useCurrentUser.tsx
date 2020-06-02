@@ -31,7 +31,7 @@ function useCurrentUser(
 
   useEffect(() => {
     if (info) {
-      setStatus('logged')
+      setStatus('loggedIn')
     } else {
       initFetch()
     }

@@ -1,7 +1,7 @@
 import { ActionOptions } from 'croods/dist/types/typeDeclarations'
 import { Inputs } from 'react-use-form-state'
 
-export type UserStatus = 'pending' | 'visitor' | 'logged'
+export type UserStatus = 'pending' | 'visitor' | 'loggedIn'
 
 export interface Headers {
   accessToken?: string
