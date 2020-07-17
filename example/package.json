@@ -8,7 +8,7 @@
     "@reach/router": "^1.2.1",
     "croods": "link:../node_modules/croods",
     "croods-auth": "link:..",
-    "lodash": "^4.17.14",
+    "lodash": "^4.17.19",
     "prop-types": "^15.7.2",
     "react": "link:../node_modules/react",
     "react-dom": "link:../node_modules/react-dom",
