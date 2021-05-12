@@ -6,11 +6,11 @@ import {
   ActionOptions,
   InstanceOptions,
 } from 'croods/dist/types/typeDeclarations'
-import { CurrentUserState, UserStatus } from './typeDeclarations'
+import { UseFetchCurrentUserType, UserStatus } from './typeDeclarations'
 
 function useFetchCurrentUser(
   options: ActionOptions,
-): [CurrentUserState, (a: object, b?: boolean) => void] {
+): UseFetchCurrentUserType {
   const opts = getBaseOpts(
     { cache: true, operation: 'info', ...options },
     'currentUser',

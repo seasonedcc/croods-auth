@@ -95,3 +95,7 @@ export interface SignInProviderState {
   signingIn: boolean
   error?: string | null
 }
+
+export type UseFetchCurrentUserType = [CurrentUserState, (a: object, b?: boolean) => void]
+
+export type UserContextValueType = UseFetchCurrentUserType | undefined
