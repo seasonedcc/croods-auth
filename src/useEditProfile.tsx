@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useCroods } from 'croods'
 import { useFormState } from 'react-use-form-state'
 import getBaseOpts from './getBaseOpts'
-import useCurrentUser from './useCurrentUser'
+import useCurrentUser from './useFetchCurrentUser'
 import { useOnUnmount } from './hooks'
 import { getFieldError, getFieldProps, isValidForm, additionalCheckerPasswordConfirmation } from './formHelpers'
 import {

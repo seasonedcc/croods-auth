@@ -8,7 +8,7 @@ import {
 } from 'croods/dist/types/typeDeclarations'
 import { CurrentUserState, UserStatus } from './typeDeclarations'
 
-function useCurrentUser(
+function useFetchCurrentUser(
   options: ActionOptions,
 ): [CurrentUserState, (a: object, b?: boolean) => void] {
   const opts = getBaseOpts(
@@ -43,4 +43,4 @@ function useCurrentUser(
   ]
 }
 
-export default useCurrentUser
+export default useFetchCurrentUser

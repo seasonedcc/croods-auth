@@ -1,7 +1,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 
-import useCurrentUser from '../useCurrentUser'
+import useCurrentUser from '../useFetchCurrentUser'
 
 let mockCurrentUser
 let mockFetchCurrentUser = jest.fn(() => jest.fn())

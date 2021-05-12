@@ -1,6 +1,6 @@
 import React, { useLayoutEffect } from 'react'
 import PropTypes from 'prop-types'
-import useCurrentUser from './useCurrentUser'
+import useFetchCurrentUser from './useFetchCurrentUser'
 
 const defaultLoading = 'Authorizing...'
 
@@ -11,7 +11,7 @@ const Authorize = ({
   unauthorize,
   ...props
 }) => {
-  const [{ currentUser, validating }, setCurrentUser] = useCurrentUser({
+  const [{ currentUser, validating }, setCurrentUser] = useFetchCurrentUser({
     afterFailure: () => unauthorized(currentUser),
   })
 
