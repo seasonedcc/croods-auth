@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import { ProviderElement } from 'croods/dist/types/typeDeclarations'
 
 import useCurrentUser from './useCurrentUser'
