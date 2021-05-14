@@ -95,3 +95,5 @@ export interface SignInProviderState {
   signingIn: boolean
   error?: string | null
 }
+
+export type UserContextValueType = [CurrentUserState, (a: object, b?: boolean) => void]

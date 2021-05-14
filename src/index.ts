@@ -1,4 +1,4 @@
-//@ts-ignore
+// @ts-ignore
 import Authorize from './Auth'
 import { saveHeaders as sH, authHeaders as aH } from './headersHelpers'
 import uCU from './useCurrentUser'
@@ -10,6 +10,7 @@ import uEP from './useEditProfile'
 import uFP from './useForgotPassword'
 import uRP from './useResetPassword'
 import uPA from './useProviderAuth'
+import aP, { useUserFromContext as uUFC } from './AuthProvider'
 
 export const Auth = Authorize
 export const authHeaders = aH
@@ -23,6 +24,8 @@ export const useForgotPassword = uFP
 export const useResetPassword = uRP
 export const saveHeaders = sH
 export const useProviderAuth = uPA
+export const AuthProvider = aP
+export const useUserFromContext = uUFC
 
 export default {
   Auth,
@@ -37,4 +40,6 @@ export default {
   useResetPassword,
   saveHeaders,
   useProviderAuth,
+  AuthProvider,
+  useUserFromContext,
 }
