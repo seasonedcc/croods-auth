@@ -22,7 +22,7 @@ export default ({ currentUser }) => {
         className="btn btn-danger"
         onClick={() => {
           // eslint-disable-next-line
-          const shouldDelete = window.confirm("Are you sure?");
+          const shouldDelete = window.confirm('Are you sure?')
           shouldDelete && deleteAccount()
         }}
       >
