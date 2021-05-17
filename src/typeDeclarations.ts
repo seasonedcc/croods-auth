@@ -1,3 +1,4 @@
+import { ElementType } from 'react'
 import { ActionOptions } from 'croods/dist/types/typeDeclarations'
 import { Inputs } from 'react-use-form-state'
 
@@ -97,3 +98,7 @@ export interface SignInProviderState {
 }
 
 export type UserContextValueType = [CurrentUserState, (a: object, b?: boolean) => void]
+
+export interface Provider {
+  children: ElementType
+}

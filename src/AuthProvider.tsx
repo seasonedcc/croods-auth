@@ -1,14 +1,13 @@
 import React from 'react'
-import { ProviderElement } from 'croods/dist/types/typeDeclarations'
 
 import useCurrentUser from './useCurrentUser'
-import { UserContextValueType } from './typeDeclarations'
+import { UserContextValueType, Provider } from './typeDeclarations'
 
 const UserContext = React.createContext<UserContextValueType | undefined>(
   undefined,
 )
 
-const AuthProvider = (props: ProviderElement) => {
+const AuthProvider = (props: Provider) => {
   const value = useCurrentUser({})
 
   return (
