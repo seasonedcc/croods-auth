@@ -1,6 +1,5 @@
 import React, { useState, Fragment } from 'react'
-import { CroodsProvider } from 'croods'
-import { Auth, authHeaders, saveHeaders, useCurrentUser } from 'croods-auth'
+import { Auth, useUserFromContext } from 'croods-auth'
 import { Router, navigate } from '@reach/router'
 
 import basePath from './basePath'
@@ -21,49 +20,38 @@ export default () => {
     setAlert({ message, type: 'danger' })
   }
 
-  const [{ status }] = useCurrentUser()
+  const [{ status }] = useUserFromContext()
 
   return (
     <Fragment>
       <Alert alert={alert} close={() => setAlert(null)} />
       {status}
-      <CroodsProvider
-        handleResponseHeaders={saveHeaders}
-        headers={authHeaders}
-        debugActions
-        debugRequests
-        baseUrl={process.env.REACT_APP_API_URL}
-      >
-        <Router basepath={basePath}>
-          <Auth
-            Component={Start}
-            path="/"
-            unauthorized={redirect('/sign-in')}
-          />
-          <Auth
-            Component={OtherPage}
-            unauthorized={currentUser =>
-              currentUser
-                ? redirect('/', 'You are not authorized to access this page')
-                : redirect('/sign-in')()
-            }
-            unauthorize={currentUser => currentUser.email === 'foo@bar.com'}
-            authorizing="Checking foo@bar.com"
-            path="/other-page"
-          />
-          <Auth
-            Component={EditProfile}
-            setAlert={setAlert}
-            path="/edit-profile"
-            unauthorized={redirect('/sign-in')}
-          />
-          <SignIn setAlert={setAlert} path="/sign-in" />
-          <SignUp setAlert={setAlert} path="/sign-up" />
-          <ForgotSent path="/forgot-sent" />
-          <ForgotPassword path="/forgot-password" />
-          <ResetPassword path="/reset-password" />
-        </Router>
-      </CroodsProvider>
+
+      <Router basepath={basePath}>
+        <Auth Component={Start} path="/" unauthorized={redirect('/sign-in')} />
+        <Auth
+          Component={OtherPage}
+          unauthorized={currentUser =>
+            currentUser
+              ? redirect('/', 'You are not authorized to access this page')
+              : redirect('/sign-in')()
+          }
+          unauthorize={currentUser => currentUser.email === 'foo@bar.com'}
+          authorizing="Checking foo@bar.com"
+          path="/other-page"
+        />
+        <Auth
+          Component={EditProfile}
+          setAlert={setAlert}
+          path="/edit-profile"
+          unauthorized={redirect('/sign-in')}
+        />
+        <SignIn setAlert={setAlert} path="/sign-in" />
+        <SignUp setAlert={setAlert} path="/sign-up" />
+        <ForgotSent path="/forgot-sent" />
+        <ForgotPassword path="/forgot-password" />
+        <ResetPassword path="/reset-password" />
+      </Router>
     </Fragment>
   )
 }

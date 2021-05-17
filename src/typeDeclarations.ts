@@ -1,3 +1,4 @@
+import { ElementType } from 'react'
 import { ActionOptions } from 'croods/dist/types/typeDeclarations'
 import { Inputs } from 'react-use-form-state'
 
@@ -94,4 +95,10 @@ export interface ForgotPassState extends AuthFormState {
 export interface SignInProviderState {
   signingIn: boolean
   error?: string | null
+}
+
+export type UserContextValueType = [CurrentUserState, (a: object, b?: boolean) => void]
+
+export interface Provider {
+  children: ElementType
 }

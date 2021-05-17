@@ -6,11 +6,11 @@ import {
   ActionOptions,
   InstanceOptions,
 } from 'croods/dist/types/typeDeclarations'
-import { CurrentUserState, UserStatus } from './typeDeclarations'
+import { UserStatus, UserContextValueType } from './typeDeclarations'
 
 function useCurrentUser(
   options: ActionOptions,
-): [CurrentUserState, (a: object, b?: boolean) => void] {
+): UserContextValueType {
   const opts = getBaseOpts(
     { cache: true, operation: 'info', ...options },
     'currentUser',
