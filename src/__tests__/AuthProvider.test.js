@@ -1,21 +1,21 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import { CroodsProvider } from "croods";
+import React from 'react'
+import renderer from 'react-test-renderer'
+import { CroodsProvider } from 'croods'
 
-import AuthProvider, { useUserFromContext } from "../AuthProvider";
+import AuthProvider, { useUserFromContext } from '../AuthProvider'
 
-jest.mock("../useCurrentUser", () =>
+jest.mock('../useCurrentUser', () =>
   jest.fn(() => [
-    { validating: false, currentUser: { id: 1, firstName: "Foobar" } },
-    () => new Promise(() => ({}))
-  ])
-);
+    { validating: false, currentUser: { id: 1, firstName: 'Foobar' } },
+    () => new Promise(() => ({})),
+  ]),
+)
 
-it("calls useSignIn ", () => {
+it('calls useSignIn ', () => {
   const Component = () => {
-    const [{ currentUser }] = useUserFromContext();
-    return <div>{currentUser.firstName}</div>;
-  };
+    const [{ currentUser }] = useUserFromContext()
+    return <div>{currentUser.firstName}</div>
+  }
 
   const tree = renderer
     .create(
@@ -23,13 +23,13 @@ it("calls useSignIn ", () => {
         <AuthProvider>
           <Component />
         </AuthProvider>
-      </CroodsProvider>
+      </CroodsProvider>,
     )
-    .toJSON();
+    .toJSON()
 
   expect(tree).toMatchInlineSnapshot(`
     <div>
       Foobar
     </div>
-  `);
-});
+  `)
+})
